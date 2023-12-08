@@ -7,7 +7,8 @@ class PrimaryButton extends StatelessWidget {
   final Color bgColor;
   final Color textColor;
   final TextStyle? textStyle;
-  final VoidCallback onTap;
+  final Color disabledColor;
+  final Function()? onTap;
   final double width;
   final double borderRadius;
 
@@ -17,6 +18,7 @@ class PrimaryButton extends StatelessWidget {
     this.textStyle,
     this.bgColor = AppColors.primaryColor,
     this.textColor = AppColors.bgColor,
+    this.disabledColor = AppColors.lightGrey,
     required this.onTap,
     this.width = double.infinity,
     this.borderRadius = 8,
@@ -25,9 +27,10 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      height: 48,
+      height: 50,
       minWidth: width,
       color: bgColor,
+      disabledColor: disabledColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),

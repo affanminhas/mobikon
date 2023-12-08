@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
+import 'package:mobikon/views/signup/verify_email_view.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 
 class WelcomeView extends StatelessWidget {
@@ -48,7 +49,9 @@ class WelcomeView extends StatelessWidget {
                   child: PrimaryButton(
                     title: 'Create Account',
                     textStyle: robotoCondensedBold.copyWith(fontSize: 18, color: Colors.white),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, VerifyEmailView.id);
+                    },
                   ),
                 ),
                 const SizedBox(height: 16),
