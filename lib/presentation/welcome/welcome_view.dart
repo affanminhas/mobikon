@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
-import 'package:mobikon/views/signup/verify_email_view.dart';
+import 'package:mobikon/presentation/signup/views/verify_email_view.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 
 class WelcomeView extends StatelessWidget {

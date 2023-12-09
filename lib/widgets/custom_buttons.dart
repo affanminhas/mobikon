@@ -8,6 +8,7 @@ class PrimaryButton extends StatelessWidget {
   final Color textColor;
   final TextStyle? textStyle;
   final Color disabledColor;
+  final Color disabledTextColor;
   final Function()? onTap;
   final double width;
   final double borderRadius;
@@ -19,6 +20,7 @@ class PrimaryButton extends StatelessWidget {
     this.bgColor = AppColors.primaryColor,
     this.textColor = AppColors.bgColor,
     this.disabledColor = AppColors.lightGrey,
+    this.disabledTextColor = AppColors.primaryColor,
     required this.onTap,
     this.width = double.infinity,
     this.borderRadius = 8,
@@ -31,13 +33,14 @@ class PrimaryButton extends StatelessWidget {
       minWidth: width,
       color: bgColor,
       disabledColor: disabledColor,
+      disabledTextColor: disabledTextColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       onPressed: onTap,
       child: Text(
         title,
-        style: textStyle ?? robotoCondensedRegular.copyWith(color: textColor),
+        style: textStyle ?? robotoCondensedBold.copyWith(color: textColor, fontSize: 16),
       ),
     );
   }

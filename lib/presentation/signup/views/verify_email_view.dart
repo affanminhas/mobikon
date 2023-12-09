@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/typography.dart';
-import 'package:mobikon/views/signup/verify_code_view.dart';
+import 'package:mobikon/presentation/signup/views/verify_code_view.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 import 'package:mobikon/widgets/custom_text_field.dart';
 

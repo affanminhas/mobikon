@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mobikon/views/login/login_view.dart';
-import 'package:mobikon/views/signup/verify_code_view.dart';
-import 'package:mobikon/views/signup/verify_email_view.dart';
-import 'package:mobikon/views/welcome/welcome_view.dart';
-
-import 'views/splash/splash_view.dart';
+import 'package:mobikon/presentation/login/login_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_business_details_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_completed_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_form_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_password_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_terms_condition_view.dart';
+import 'package:mobikon/presentation/signup/views/verify_code_view.dart';
+import 'package:mobikon/presentation/signup/views/verify_email_view.dart';
+import 'package:mobikon/presentation/splash/splash_view.dart';
+import 'package:mobikon/presentation/welcome/welcome_view.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -19,6 +23,16 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const VerifyEmailView());
       case VerifyCodeView.id:
         return MaterialPageRoute(builder: (_) => const VerifyCodeView());
+      case SignUpFormView.id:
+        return MaterialPageRoute(builder: (_) => const SignUpFormView());
+      case SignUpPasswordView.id:
+        return MaterialPageRoute(builder: (_) => const SignUpPasswordView());
+      case SignUpBusinessDetailsView.id:
+        return MaterialPageRoute(builder: (_) => const SignUpBusinessDetailsView());
+      case SignUpTermsConditionView.id:
+        return MaterialPageRoute(builder: (_) => const SignUpTermsConditionView());
+      case SignUpCompletedView.id:
+        return MaterialPageRoute(builder: (_) => const SignUpCompletedView());
       default:
         return _errorRoute();
     }

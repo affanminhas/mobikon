@@ -54,7 +54,7 @@ class CustomTextField extends StatelessWidget {
       this.suffixText = '',
       this.validator,
       this.onTap,
-      this.radius = 10,
+      this.radius = 5,
       this.keyBoardType = TextInputType.text,
       this.inputFormatters = const [],
       this.textInputAction = TextInputAction.next,
@@ -87,14 +87,14 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: hintText,
           errorStyle: !showErrorMessage ? const TextStyle(height: 0) : null,
-          hintStyle: hintStyle ?? const TextStyle(color: Colors.grey, fontFamily: 'Poppins', fontSize: 14),
+          hintStyle: hintStyle ?? robotoCondensedRegular.copyWith(color: AppColors.darkGrey, fontSize: 15),
           suffixText: suffixText,
           suffixIcon: isSuffixIcon
               ? IconButton(
                   onPressed: () {
                     if (onSuffixIconPressed != null) onSuffixIconPressed!();
                   },
-                  icon: Icon(suffixIcon),
+                  icon: Icon(suffixIcon, size: 20),
                 )
               : null,
           prefixIcon: prefixIcon,
