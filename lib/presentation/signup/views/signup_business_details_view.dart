@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/typography.dart';
+import 'package:mobikon/presentation/login/views/login_view.dart';
 import 'package:mobikon/presentation/signup/signup_controller.dart';
 import 'package:mobikon/presentation/signup/views/signup_terms_condition_view.dart';
 import 'package:mobikon/presentation/signup/widgets/signup_stepper.dart';
@@ -75,28 +76,31 @@ class SignUpBusinessDetailsView extends StatelessWidget {
                     outlineColor: AppColors.lightGrey,
                   ),
                   const Spacer(),
-                  Center(
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: 'Already have an account? ',
-                            style: robotoCondensedRegular.copyWith(
-                              fontSize: 14,
-                              color: AppColors.darkGrey,
-                              height: 1.7,
+                  GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, LoginView.id),
+                    child: Center(
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Already have an account? ',
+                              style: robotoCondensedRegular.copyWith(
+                                fontSize: 14,
+                                color: AppColors.darkGrey,
+                                height: 1.7,
+                              ),
                             ),
-                          ),
-                          TextSpan(
-                            text: 'Login',
-                            style: robotoCondensedMedium.copyWith(
-                              fontSize: 14,
-                              color: AppColors.primaryColor,
-                              height: 1.7,
+                            TextSpan(
+                              text: 'Login',
+                              style: robotoCondensedMedium.copyWith(
+                                fontSize: 14,
+                                color: AppColors.primaryColor,
+                                height: 1.7,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -117,6 +121,7 @@ class SignUpBusinessDetailsView extends StatelessWidget {
                         child: PrimaryButton(
                           title: 'Next',
                           bgColor: AppColors.primaryColor,
+                          disabledColor: AppColors.primaryColor50,
                           onTap: signUpController.isBusinessFormValid
                               ? () {
                                   Navigator.pushNamed(context, SignUpTermsConditionView.id);

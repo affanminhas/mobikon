@@ -5,10 +5,10 @@ import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/welcome/welcome_view.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 
-class SignUpCompletedView extends StatelessWidget {
-  static const String id = '/signUpCompletedView';
+class LoginApprovalView extends StatelessWidget {
+  static const String id = 'login_approval_view';
 
-  const SignUpCompletedView({super.key});
+  const LoginApprovalView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,26 +18,34 @@ class SignUpCompletedView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 36),
-                Image.asset(Strings.verifiedLogo, width: 100, height: 100),
+                Image.asset(Strings.approvalClock, width: 100, height: 100),
                 const SizedBox(height: 32),
                 Text(
-                  'Account Created Successfully',
+                  'Waiting For Approval',
                   style: robotoCondensedBold.copyWith(fontSize: 25),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 8),
                 Text(
-                  'Your account has been registered and created successfully. Now you can navigate to Home and start using IRT',
+                  'You need to wait for the approval or you can logout of your account',
                   style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
                   textAlign: TextAlign.center,
                 ),
                 const Spacer(),
                 PrimaryButton(
-                  title: 'Get Started To Home',
-                  bgColor: AppColors.primaryColor,
+                  title: '',
+                  bgColor: AppColors.redColor,
+                  disabledColor: AppColors.primaryColor50,
                   onTap: () => Navigator.pushNamedAndRemoveUntil(context, WelcomeView.id, (route) => false),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.logout, color: AppColors.bgColor),
+                      const SizedBox(width: 8),
+                      Text('Logout', style: robotoCondensedBold.copyWith(fontSize: 16, color: AppColors.bgColor)),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 24),
               ],

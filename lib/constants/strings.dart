@@ -28,4 +28,11 @@ class Strings {
   /// Signup View Assets
   static const String emailLogo = 'assets/images/signup/email_logo.png';
   static const String verifiedLogo = 'assets/images/signup/verified.png';
+
+  /// Login View Assets
+  static const String loginLogo = 'assets/images/login/login_logo.png';
+  static const String approvalClock = 'assets/images/login/approval_logo.png';
+
+  /// Forgot Password View Assets
+  static const String forgotPasswordLogo = 'assets/images/forgot_password/forgot_pass_logo.png';
 }

@@ -112,6 +112,7 @@ class _VerifyCodeViewState extends State<VerifyCodeView> {
               PrimaryButton(
                 title: 'Verify Code',
                 bgColor: AppColors.primaryColor,
+                disabledColor: AppColors.primaryColor50,
                 onTap: _pin.length < 6
                     ? null
                     : () {

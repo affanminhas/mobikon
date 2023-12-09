@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mobikon/presentation/login/login_view.dart';
+import 'package:mobikon/presentation/forgot_password/views/forgot_email_sent_view.dart';
+import 'package:mobikon/presentation/forgot_password/views/forgot_password_view.dart';
+import 'package:mobikon/presentation/login/views/login_approval_view.dart';
+import 'package:mobikon/presentation/login/views/login_view.dart';
 import 'package:mobikon/presentation/signup/views/signup_business_details_view.dart';
 import 'package:mobikon/presentation/signup/views/signup_completed_view.dart';
 import 'package:mobikon/presentation/signup/views/signup_form_view.dart';
@@ -33,6 +36,12 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SignUpTermsConditionView());
       case SignUpCompletedView.id:
         return MaterialPageRoute(builder: (_) => const SignUpCompletedView());
+      case LoginApprovalView.id:
+        return MaterialPageRoute(builder: (_) => const LoginApprovalView());
+      case ForgotPasswordView.id:
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
+      case ForgotPassEmailSentView.id:
+        return MaterialPageRoute(builder: (_) => const ForgotPassEmailSentView());
       default:
         return _errorRoute();
     }
