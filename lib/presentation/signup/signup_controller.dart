@@ -1,7 +1,19 @@
+import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:mobikon/repository/signup_repo.dart';
 
 class SignUpController extends GetxController {
+  final SignUpRepository _signUpRepository = SignUpRepository();
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
+  void setLoading(bool value) {
+    _isLoading = value;
+    update();
+  }
+
   /// --- Sign Up Form Fields --- ///
   String _firstName = '';
   String _lastName = '';
@@ -74,5 +86,23 @@ class SignUpController extends GetxController {
   void setBusinessAddress(String value) {
     _businessAddress = value;
     update();
+  }
+
+  /// Sign Up Api Call
+  Future<void> signUp() async {
+    try {
+      setLoading(true);
+      bool isRegistered = await _signUpRepository.signUp(email, password);
+      if (isRegistered) {
+        Get.snackbar('Success', 'Register Successful');
+      } else {
+        Get.snackbar('Error', 'Register Failed');
+      }
+    } catch (e) {
+      log(e.toString());
+      Get.snackbar('Error', e.toString());
+    } finally {
+      setLoading(false);
+    }
   }
 }
