@@ -278,7 +278,7 @@ class SignUpBusinessDetailsView extends StatelessWidget {
                           onTap: () => Navigator.pop(context),
                         ),
                       ),
-                      const SizedBox(width: 16),
+                      const SizedBox(width: 17),
                       Expanded(
                         child: PrimaryButton(
                           title: 'Next',
