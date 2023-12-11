@@ -7,6 +7,7 @@ import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/login/views/login_view.dart';
 import 'package:mobikon/presentation/signup/views/verify_email_view.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
+import 'package:page_transition/page_transition.dart';
 
 class WelcomeView extends StatelessWidget {
   static const String id = 'welcome_view';

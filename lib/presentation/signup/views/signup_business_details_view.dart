@@ -56,7 +56,7 @@ class SignUpBusinessDetailsView extends StatelessWidget {
                           height: 55,
                           child: CustomDropDown(
                             items: const ['Electronics', 'Fashion'],
-                            hintText: 'Good Type',
+                            hintText: 'Business Type',
                             onChanged: (value) => signUpController.setBusinessType(value),
                           ),
                         ),
@@ -66,14 +66,176 @@ class SignUpBusinessDetailsView extends StatelessWidget {
                   const SizedBox(height: 16),
                   CustomTextField(
                     onChanged: (value) => signUpController.setBusinessLocation(value),
-                    hintText: 'Location',
+                    hintText: 'Business Location',
                     outlineColor: AppColors.lightGrey,
                   ),
                   const SizedBox(height: 16),
                   CustomTextField(
                     onChanged: (value) => signUpController.setBusinessAddress(value),
-                    hintText: 'Apt, Suite, or Unit',
+                    hintText: 'Tax Number',
                     outlineColor: AppColors.lightGrey,
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'Container Preferences',
+                    style: robotoCondensedRegular.copyWith(fontSize: 16),
+                  ),
+                  const SizedBox(height: 16),
+                  GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(25.0),
+                          ),
+                        ),
+                        backgroundColor: Colors.white,
+                        context: context,
+                        //isScrollControlled: true,
+                        builder: (context) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 18),
+                          child: SizedBox(
+                            height: 300,
+                            width: double.infinity,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                const SizedBox(height: 16),
+                                Center(
+                                  child: Container(
+                                    width: 90,
+                                    height: 7,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.lightGrey,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 24),
+                                Text(
+                                  'Select Container Size',
+                                  style: robotoCondensedBold.copyWith(fontSize: 18),
+                                ),
+                                Text(
+                                  'You can select one from below',
+                                  style: robotoCondensedRegular.copyWith(fontSize: 14, color: AppColors.darkGrey),
+                                ),
+                                Expanded(
+                                  child: ListWheelScrollView.useDelegate(
+                                    itemExtent: 50,
+                                    diameterRatio: 1.8,
+                                    useMagnifier: true,
+                                    magnification: 1.2,
+                                    perspective: 0.01,
+                                    physics: const FixedExtentScrollPhysics(),
+                                    onSelectedItemChanged: (index) {
+                                      signUpController.setSelectedContainerSize('${index + 1}0 Foot');
+                                    },
+                                    childDelegate: ListWheelChildBuilderDelegate(
+                                      builder: (context, index) => Container(
+                                        height: 50,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          '${index + 1}0 Foot',
+                                          style: robotoCondensedRegular.copyWith(fontSize: 15),
+                                        ),
+                                      ),
+                                      childCount: 10,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      height: 48,
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: AppColors.lightGrey),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            signUpController.selectedContainerSize.isEmpty
+                                ? 'Container Size'
+                                : signUpController.selectedContainerSize,
+                            style: robotoCondensedRegular.copyWith(fontSize: 15),
+                          ),
+                          const Icon(Icons.keyboard_arrow_down_rounded),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Camera Required For Container?',
+                    style: robotoCondensedRegular.copyWith(fontSize: 16),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: AppColors.lightGrey),
+                          ),
+                          child: Row(
+                            children: [
+                              Radio(
+                                activeColor: AppColors.primaryColor,
+                                value: 1,
+                                onChanged: (value) {
+                                  signUpController.setCameraSelectedOption(value!);
+                                },
+                                groupValue: signUpController.cameraSelectedOption,
+                              ),
+                              Text(
+                                'No',
+                                style: robotoCondensedRegular.copyWith(
+                                  fontSize: 15,
+                                  color: AppColors.black1,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(color: AppColors.lightGrey),
+                          ),
+                          child: Row(
+                            children: [
+                              Radio(
+                                activeColor: AppColors.primaryColor,
+                                value: 2,
+                                onChanged: (value) {
+                                  signUpController.setCameraSelectedOption(value!);
+                                },
+                                groupValue: signUpController.cameraSelectedOption,
+                              ),
+                              Text(
+                                'Yes',
+                                style: robotoCondensedRegular.copyWith(
+                                  fontSize: 15,
+                                  color: AppColors.black1,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   const Spacer(),
                   GestureDetector(

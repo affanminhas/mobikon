@@ -19,6 +19,7 @@ class SignUpController extends GetxController {
   String _lastName = '';
   String _email = '';
   String _password = '';
+  String _confirmPassword = '';
 
   String get firstName => _firstName;
 
@@ -27,6 +28,8 @@ class SignUpController extends GetxController {
   String get email => _email;
 
   String get password => _password;
+
+  String get confirmPassword => _confirmPassword;
 
   void setFirstName(String value) {
     _firstName = value;
@@ -48,11 +51,18 @@ class SignUpController extends GetxController {
     update();
   }
 
+  void setConfirmPassword(String value) {
+    _confirmPassword = value;
+    update();
+  }
+
   /// --- Business Form Fields --- ///
   String _businessName = '';
   String _businessType = '';
   String _businessLocation = '';
   String _businessAddress = '';
+  int _cameraSelectedOption = 1;
+  String _selectedContainerSize = '';
 
   String get businessName => _businessName;
 
@@ -62,11 +72,15 @@ class SignUpController extends GetxController {
 
   String get businessAddress => _businessAddress;
 
+  int get cameraSelectedOption => _cameraSelectedOption;
+
+  String get selectedContainerSize => _selectedContainerSize;
+
   bool get isBusinessFormValid =>
       _businessName.isNotEmpty &&
       _businessType.isNotEmpty &&
       _businessLocation.isNotEmpty &&
-      _businessAddress.isNotEmpty;
+      _businessAddress.isNotEmpty && _selectedContainerSize.isNotEmpty;
 
   void setBusinessName(String value) {
     _businessName = value;
@@ -85,6 +99,16 @@ class SignUpController extends GetxController {
 
   void setBusinessAddress(String value) {
     _businessAddress = value;
+    update();
+  }
+
+  void setCameraSelectedOption(int value) {
+    _cameraSelectedOption = value;
+    update();
+  }
+
+  void setSelectedContainerSize(String value) {
+    _selectedContainerSize = value;
     update();
   }
 

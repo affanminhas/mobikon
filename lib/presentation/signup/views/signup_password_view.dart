@@ -20,6 +20,7 @@ class SignUpPasswordView extends StatefulWidget {
 
 class _SignUpPasswordViewState extends State<SignUpPasswordView> {
   bool isPasswordVisible = false;
+  bool isConfirmPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +59,20 @@ class _SignUpPasswordViewState extends State<SignUpPasswordView> {
                     },
                     onChanged: (value) => signUpController.setPassword(value),
                     hintText: 'Password',
+                    outlineColor: AppColors.lightGrey,
+                  ),
+                  const SizedBox(height: 24),
+                  CustomTextField(
+                    suffixIcon: isConfirmPasswordVisible ? Icons.visibility_off : Icons.remove_red_eye,
+                    isSuffixIcon: true,
+                    isPassword: !isConfirmPasswordVisible,
+                    onSuffixIconPressed: () {
+                      setState(() {
+                        isConfirmPasswordVisible = !isConfirmPasswordVisible;
+                      });
+                    },
+                    onChanged: (value) => signUpController.setConfirmPassword(value),
+                    hintText: 'Confirm Password',
                     outlineColor: AppColors.lightGrey,
                   ),
                   const Spacer(),
@@ -107,7 +122,7 @@ class _SignUpPasswordViewState extends State<SignUpPasswordView> {
                           title: 'Next',
                           bgColor: AppColors.primaryColor,
                           disabledColor: AppColors.primaryColor50,
-                          onTap: signUpController.password.isNotEmpty
+                          onTap: signUpController.password.isNotEmpty && signUpController.confirmPassword.isNotEmpty
                               ? () {
                                   Navigator.pushNamed(context, SignUpBusinessDetailsView.id);
                                 }

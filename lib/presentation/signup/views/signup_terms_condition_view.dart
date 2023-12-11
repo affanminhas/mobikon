@@ -31,11 +31,35 @@ class SignUpTermsConditionView extends StatelessWidget {
                   style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
                 ),
                 const SizedBox(height: 40),
+                // Text(
+                //   Strings.termsAndCondition,
+                //   textAlign: TextAlign.justify,
+                //   style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
+                // ),
                 Text(
-                  Strings.termsAndCondition,
-                  textAlign: TextAlign.justify,
-                  style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
+                  Strings.privacyPolicyText1,
+                  style: robotoCondensedRegular.copyWith(
+                    fontSize: 16,
+                    color: AppColors.darkGrey,
+                  ),
                 ),
+                const SizedBox(height: 30),
+                Text(
+                  Strings.privacyPolicyText2,
+                  style: robotoCondensedRegular.copyWith(
+                    fontSize: 16,
+                    color: AppColors.darkGrey,
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Text(
+                  Strings.privacyPolicyText3,
+                  style: robotoCondensedRegular.copyWith(
+                    fontSize: 16,
+                    color: AppColors.darkGrey,
+                  ),
+                ),
+                const SizedBox(height: 57),
                 PrimaryButton(
                   title: 'Next',
                   bgColor: AppColors.primaryColor,

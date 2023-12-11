@@ -12,6 +12,7 @@ import 'package:mobikon/presentation/signup/views/verify_code_view.dart';
 import 'package:mobikon/presentation/signup/views/verify_email_view.dart';
 import 'package:mobikon/presentation/splash/splash_view.dart';
 import 'package:mobikon/presentation/welcome/welcome_view.dart';
+import 'package:page_transition/page_transition.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -19,29 +20,29 @@ class RouteGenerator {
       case SplashView.id:
         return MaterialPageRoute(builder: (_) => const SplashView());
       case LoginView.id:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return PageTransition(child: const LoginView(), type: PageTransitionType.rightToLeft);
       case WelcomeView.id:
-        return MaterialPageRoute(builder: (_) => const WelcomeView());
+        return PageTransition(child: const WelcomeView(), type: PageTransitionType.rightToLeft);
       case VerifyEmailView.id:
-        return MaterialPageRoute(builder: (_) => const VerifyEmailView());
+        return PageTransition(child: const VerifyEmailView(), type: PageTransitionType.rightToLeft);
       case VerifyCodeView.id:
-        return MaterialPageRoute(builder: (_) => const VerifyCodeView());
+        return PageTransition(child: const VerifyCodeView(), type: PageTransitionType.rightToLeft);
       case SignUpFormView.id:
-        return MaterialPageRoute(builder: (_) => const SignUpFormView());
+        return PageTransition(child: const SignUpFormView(), type: PageTransitionType.rightToLeft);
       case SignUpPasswordView.id:
-        return MaterialPageRoute(builder: (_) => const SignUpPasswordView());
+        return PageTransition(child: const SignUpPasswordView(), type: PageTransitionType.rightToLeft);
       case SignUpBusinessDetailsView.id:
-        return MaterialPageRoute(builder: (_) => const SignUpBusinessDetailsView());
+        return PageTransition(child: const SignUpBusinessDetailsView(), type: PageTransitionType.rightToLeft);
       case SignUpTermsConditionView.id:
-        return MaterialPageRoute(builder: (_) => const SignUpTermsConditionView());
+        return PageTransition(child: const SignUpTermsConditionView(), type: PageTransitionType.rightToLeft);
       case SignUpCompletedView.id:
-        return MaterialPageRoute(builder: (_) => const SignUpCompletedView());
+        return PageTransition(child: const SignUpCompletedView(), type: PageTransitionType.rightToLeft);
       case LoginApprovalView.id:
-        return MaterialPageRoute(builder: (_) => const LoginApprovalView());
+        return PageTransition(child: const LoginApprovalView(), type: PageTransitionType.rightToLeft);
       case ForgotPasswordView.id:
-        return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
+        return PageTransition(child: const ForgotPasswordView(), type: PageTransitionType.rightToLeft);
       case ForgotPassEmailSentView.id:
-        return MaterialPageRoute(builder: (_) => const ForgotPassEmailSentView());
+        return PageTransition(child: const ForgotPassEmailSentView(), type: PageTransitionType.rightToLeft);
       default:
         return _errorRoute();
     }

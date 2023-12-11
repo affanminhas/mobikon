@@ -85,7 +85,11 @@ class CustomTextField extends StatelessWidget {
         textAlign: textAlign,
         controller: controller,
         decoration: InputDecoration(
-          hintText: hintText,
+          //hintText: hintText,
+          label: Text(
+            hintText!,
+            style: hintStyle ?? robotoCondensedRegular.copyWith(color: AppColors.primaryColor, fontSize: 15),
+          ),
           errorStyle: !showErrorMessage ? const TextStyle(height: 0) : null,
           hintStyle: hintStyle ?? robotoCondensedRegular.copyWith(color: AppColors.darkGrey, fontSize: 15),
           suffixText: suffixText,
