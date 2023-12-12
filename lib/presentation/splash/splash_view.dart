@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
-import 'package:mobikon/views/welcome/welcome_view.dart';
+import 'package:mobikon/presentation/welcome/welcome_view.dart';
 
 class SplashView extends StatefulWidget {
   static const String id = 'splash_view';

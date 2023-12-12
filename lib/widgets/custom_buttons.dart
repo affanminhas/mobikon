@@ -7,7 +7,10 @@ class PrimaryButton extends StatelessWidget {
   final Color bgColor;
   final Color textColor;
   final TextStyle? textStyle;
-  final VoidCallback onTap;
+  final Color disabledColor;
+  final Color disabledTextColor;
+  final Function()? onTap;
+  final Widget? child;
   final double width;
   final double borderRadius;
 
@@ -17,7 +20,10 @@ class PrimaryButton extends StatelessWidget {
     this.textStyle,
     this.bgColor = AppColors.primaryColor,
     this.textColor = AppColors.bgColor,
+    this.disabledColor = AppColors.lightGrey,
+    this.disabledTextColor = AppColors.primaryColor,
     required this.onTap,
+    this.child,
     this.width = double.infinity,
     this.borderRadius = 8,
   });
@@ -25,17 +31,20 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      height: 48,
+      height: 50,
       minWidth: width,
       color: bgColor,
+      disabledColor: disabledColor,
+      disabledTextColor: disabledTextColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       onPressed: onTap,
-      child: Text(
-        title,
-        style: textStyle ?? robotoCondensedRegular.copyWith(color: textColor),
-      ),
+      child: child ??
+          Text(
+            title,
+            style: textStyle ?? robotoCondensedBold.copyWith(color: textColor, fontSize: 16),
+          ),
     );
   }
 }

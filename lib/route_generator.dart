@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:mobikon/views/login/login_view.dart';
-import 'package:mobikon/views/welcome/welcome_view.dart';
-
-import 'views/splash/splash_view.dart';
+import 'package:mobikon/presentation/dashboard/dashboard_view.dart';
+import 'package:mobikon/presentation/forgot_password/views/forgot_email_sent_view.dart';
+import 'package:mobikon/presentation/forgot_password/views/forgot_password_view.dart';
+import 'package:mobikon/presentation/login/views/login_approval_view.dart';
+import 'package:mobikon/presentation/login/views/login_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_business_details_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_completed_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_form_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_password_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_terms_condition_view.dart';
+import 'package:mobikon/presentation/signup/views/verify_code_view.dart';
+import 'package:mobikon/presentation/signup/views/verify_email_view.dart';
+import 'package:mobikon/presentation/splash/splash_view.dart';
+import 'package:mobikon/presentation/welcome/welcome_view.dart';
+import 'package:page_transition/page_transition.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -10,9 +21,31 @@ class RouteGenerator {
       case SplashView.id:
         return MaterialPageRoute(builder: (_) => const SplashView());
       case LoginView.id:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return PageTransition(child: const LoginView(), type: PageTransitionType.rightToLeft);
       case WelcomeView.id:
-        return MaterialPageRoute(builder: (_) => const WelcomeView());
+        return PageTransition(child: const WelcomeView(), type: PageTransitionType.rightToLeft);
+      case VerifyEmailView.id:
+        return PageTransition(child: const VerifyEmailView(), type: PageTransitionType.rightToLeft);
+      case VerifyCodeView.id:
+        return PageTransition(child: const VerifyCodeView(), type: PageTransitionType.rightToLeft);
+      case SignUpFormView.id:
+        return PageTransition(child: const SignUpFormView(), type: PageTransitionType.rightToLeft);
+      case SignUpPasswordView.id:
+        return PageTransition(child: const SignUpPasswordView(), type: PageTransitionType.rightToLeft);
+      case SignUpBusinessDetailsView.id:
+        return PageTransition(child: const SignUpBusinessDetailsView(), type: PageTransitionType.rightToLeft);
+      case SignUpTermsConditionView.id:
+        return PageTransition(child: const SignUpTermsConditionView(), type: PageTransitionType.rightToLeft);
+      case SignUpCompletedView.id:
+        return PageTransition(child: const SignUpCompletedView(), type: PageTransitionType.rightToLeft);
+      case LoginApprovalView.id:
+        return PageTransition(child: const LoginApprovalView(), type: PageTransitionType.rightToLeft);
+      case ForgotPasswordView.id:
+        return PageTransition(child: const ForgotPasswordView(), type: PageTransitionType.rightToLeft);
+      case ForgotPassEmailSentView.id:
+        return PageTransition(child: const ForgotPassEmailSentView(), type: PageTransitionType.rightToLeft);
+      case DashboardView.id:
+        return PageTransition(child: const DashboardView(), type: PageTransitionType.rightToLeft);
       default:
         return _errorRoute();
     }
