@@ -41,4 +41,10 @@ class Strings {
 
   /// Forgot Password View Assets
   static const String forgotPasswordLogo = 'assets/images/forgot_password/forgot_pass_logo.png';
+
+  /// Dashboard View Assets
+  static const String homeAsset = 'assets/images/dashboard/home_asset.png';
+  static const String deliveriesAsset = 'assets/images/dashboard/deliveries_asset.png';
+  static const String driversAsset = 'assets/images/dashboard/drivers_asset.png';
+  static const String myAccountAsset = 'assets/images/dashboard/account_asset.png';
 }

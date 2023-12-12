@@ -71,6 +71,7 @@ flutter:
     - assets/images/signup/
     - assets/images/login/
     - assets/images/forgot_password/
+    - assets/images/dashboard/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

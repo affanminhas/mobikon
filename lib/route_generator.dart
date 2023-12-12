@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobikon/presentation/dashboard/dashboard_view.dart';
 import 'package:mobikon/presentation/forgot_password/views/forgot_email_sent_view.dart';
 import 'package:mobikon/presentation/forgot_password/views/forgot_password_view.dart';
 import 'package:mobikon/presentation/login/views/login_approval_view.dart';
@@ -43,6 +44,8 @@ class RouteGenerator {
         return PageTransition(child: const ForgotPasswordView(), type: PageTransitionType.rightToLeft);
       case ForgotPassEmailSentView.id:
         return PageTransition(child: const ForgotPassEmailSentView(), type: PageTransitionType.rightToLeft);
+      case DashboardView.id:
+        return PageTransition(child: const DashboardView(), type: PageTransitionType.rightToLeft);
       default:
         return _errorRoute();
     }

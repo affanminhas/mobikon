@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
-import 'package:mobikon/presentation/welcome/welcome_view.dart';
+import 'package:mobikon/presentation/dashboard/dashboard_view.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 
 class SignUpCompletedView extends StatelessWidget {
@@ -37,7 +37,7 @@ class SignUpCompletedView extends StatelessWidget {
                 PrimaryButton(
                   title: 'Get Started To Home',
                   bgColor: AppColors.primaryColor,
-                  onTap: () => Navigator.pushNamedAndRemoveUntil(context, WelcomeView.id, (route) => false),
+                  onTap: () => Navigator.pushNamed(context, DashboardView.id),
                 ),
                 const SizedBox(height: 24),
               ],
