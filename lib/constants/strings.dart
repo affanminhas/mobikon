@@ -47,4 +47,15 @@ class Strings {
   static const String deliveriesAsset = 'assets/images/dashboard/deliveries_asset.png';
   static const String driversAsset = 'assets/images/dashboard/drivers_asset.png';
   static const String myAccountAsset = 'assets/images/dashboard/account_asset.png';
+
+  /// Home View Assets
+  static const String waveIcon = 'assets/images/home/wave.png';
+  static const String containerAsset = 'assets/images/home/container_asset.png';
+  static const String cubeIcon = 'assets/images/home/cube.png';
+  static const String circuitIcon = 'assets/images/home/circuit.png';
+  static const String deleteEmoji = 'assets/images/home/delete_emoji.png';
+
+  /// Account View Assets
+  static const String qrCode = 'assets/images/account/qr_code.png';
+  static const String lockPerson = 'assets/images/account/lock_person.png';
 }

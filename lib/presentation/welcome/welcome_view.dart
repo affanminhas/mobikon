@@ -5,9 +5,8 @@ import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/login/views/login_view.dart';
-import 'package:mobikon/presentation/signup/views/verify_email_view.dart';
+import 'package:mobikon/presentation/signup/views/signup_form_view.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
-import 'package:page_transition/page_transition.dart';
 
 class WelcomeView extends StatelessWidget {
   static const String id = 'welcome_view';
@@ -54,7 +53,7 @@ class WelcomeView extends StatelessWidget {
                       title: 'Create Account',
                       textStyle: robotoCondensedBold.copyWith(fontSize: 18, color: Colors.white),
                       onTap: () {
-                        Navigator.pushNamed(context, VerifyEmailView.id);
+                        Navigator.pushNamed(context, SignUpFormView.id);
                       },
                     ),
                   ),

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mobikon/presentation/forgot_password/forgot_password_controller.dart';
 import 'package:mobikon/presentation/login/login_controller.dart';
+import 'package:mobikon/presentation/my_account/myaccount_controller.dart';
 import 'package:mobikon/presentation/signup/signup_controller.dart';
 
 class GlobalBinding extends Bindings {
@@ -9,5 +10,6 @@ class GlobalBinding extends Bindings {
     Get.put<SignUpController>(SignUpController());
     Get.put<LoginController>(LoginController());
     Get.put<ForgotPasswordController>(ForgotPasswordController());
+    Get.put<MyAccountController>(MyAccountController());
   }
 }

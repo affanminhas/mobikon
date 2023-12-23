@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
   final bool isPassword;
   final bool readOnly;
   final Color? fillColor;
+  final int maxLines;
   final bool showErrorMessage;
   final String suffixText;
   final Function()? onTap;
@@ -54,6 +55,7 @@ class CustomTextField extends StatelessWidget {
       this.suffixText = '',
       this.validator,
       this.onTap,
+      this.maxLines = 1,
       this.radius = 5,
       this.keyBoardType = TextInputType.text,
       this.inputFormatters = const [],
@@ -72,14 +74,15 @@ class CustomTextField extends StatelessWidget {
         initialValue: initialValue,
         enabled: isEnable,
         keyboardType: keyBoardType,
-        obscuringCharacter: '*',
-        validator: (value) => validator!(value),
+        obscuringCharacter: '●',
+        validator: (value) => validator?.call(value),
         scrollPhysics: const BouncingScrollPhysics(),
         style: inputTextStyle ?? robotoCondensedRegular,
         obscureText: isPassword,
         onChanged: onChanged,
         readOnly: readOnly,
         onTap: onTap,
+        maxLines: maxLines,
         inputFormatters: inputFormatters,
         textInputAction: textInputAction,
         textAlign: textAlign,

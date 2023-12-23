@@ -12,4 +12,11 @@ TextStyle robotoCondensedRegular =
 TextStyle robotoCondensedSemiBold =
     const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, fontFamily: 'RobotoCondensed');
 TextStyle robotoCondensedBlack =
-const TextStyle(fontSize: 13, fontWeight: FontWeight.w900, fontFamily: 'RobotoCondensed');
+    const TextStyle(fontSize: 13, fontWeight: FontWeight.w900, fontFamily: 'RobotoCondensed');
+
+/// ----- Roboto Font Family -----
+TextStyle robotoLight = const TextStyle(fontSize: 12, fontWeight: FontWeight.w300, fontFamily: 'Roboto');
+TextStyle robotoMedium = const TextStyle(fontSize: 13, fontWeight: FontWeight.w500, fontFamily: 'Roboto');
+TextStyle robotoBold = const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontFamily: 'Roboto');
+TextStyle robotoRegular = const TextStyle(fontSize: 15, fontWeight: FontWeight.w400, fontFamily: 'Roboto');
+TextStyle robotoBlack = const TextStyle(fontSize: 13, fontWeight: FontWeight.w900, fontFamily: 'Roboto');

@@ -1,6 +1,5 @@
-
-import 'package:dio/dio.dart';
+import 'package:http/http.dart';
 
 extension ApiExtension on Response {
-  bool get isApiSuccessful => statusCode! >= 200 && statusCode! <= 205;
+  bool get isApiSuccessful => statusCode >= 200 && statusCode <= 205;
 }

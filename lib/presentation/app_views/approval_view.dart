@@ -3,13 +3,19 @@ import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/welcome/welcome_view.dart';
+import 'package:mobikon/services/preferences.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 
-class LoginApprovalView extends StatelessWidget {
+class ApprovalView extends StatefulWidget {
   static const String id = 'login_approval_view';
 
-  const LoginApprovalView({super.key});
+  const ApprovalView({super.key});
 
+  @override
+  State<ApprovalView> createState() => _ApprovalViewState();
+}
+
+class _ApprovalViewState extends State<ApprovalView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +43,21 @@ class LoginApprovalView extends StatelessWidget {
                   title: '',
                   bgColor: AppColors.redColor,
                   disabledColor: AppColors.primaryColor50,
-                  onTap: () => Navigator.pushNamedAndRemoveUntil(context, WelcomeView.id, (route) => false),
+                  onTap: () async {
+                    await Preference.clear();
+                    if (mounted) {
+                      Navigator.pushNamedAndRemoveUntil(context, WelcomeView.id, (route) => false);
+                    }
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(Icons.logout, color: AppColors.bgColor),
                       const SizedBox(width: 8),
-                      Text('Logout', style: robotoCondensedBold.copyWith(fontSize: 16, color: AppColors.bgColor)),
+                      Text(
+                        'Logout',
+                        style: robotoCondensedBold.copyWith(fontSize: 16, color: AppColors.bgColor),
+                      ),
                     ],
                   ),
                 ),

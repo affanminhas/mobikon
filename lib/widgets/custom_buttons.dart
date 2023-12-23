@@ -50,21 +50,25 @@ class PrimaryButton extends StatelessWidget {
 }
 
 class SecondaryButton extends StatelessWidget {
-  final Widget title;
+  final Widget child;
   final Color bgColor;
   final Color textColor;
   final Function()? onTap;
   final double width;
   final double borderRadius;
+  final Color disabledColor;
+  final Color disabledTextColor;
 
   const SecondaryButton({
     super.key,
-    required this.title,
+    required this.child,
     this.bgColor = AppColors.primaryColor,
     this.textColor = AppColors.bgColor,
     this.onTap,
     this.width = double.infinity,
     this.borderRadius = 8,
+    this.disabledColor = AppColors.lightGrey,
+    this.disabledTextColor = AppColors.primaryColor,
   });
 
   @override
@@ -73,11 +77,13 @@ class SecondaryButton extends StatelessWidget {
       height: 48,
       minWidth: width,
       color: bgColor,
+      disabledColor: disabledColor,
+      disabledTextColor: disabledTextColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       onPressed: onTap,
-      child: title,
+      child: child,
     );
   }
 }

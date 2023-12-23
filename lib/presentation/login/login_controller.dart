@@ -1,6 +1,9 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:mobikon/presentation/dashboard/dashboard_view.dart';
+import 'package:mobikon/presentation/app_views/approval_view.dart';
+import 'package:mobikon/presentation/signup/views/business_form_view.dart';
 import 'package:mobikon/repository/login_repo.dart';
 
 class LoginController extends GetxController {
@@ -39,16 +42,38 @@ class LoginController extends GetxController {
     try {
       setLoading(true);
       bool isLoggedIn = await _loginRepository.login(email, password);
+      Map<String, dynamic> data = await _loginRepository.getStarted();
       if (isLoggedIn) {
-        Get.snackbar('Success', 'Login Successful');
+        Get.snackbar('Success', 'Login Successful!');
+        if (data['is_business_registered'] == false) {
+          Get.toNamed(BusinessFormView.id);
+        } else if (data['is_business_approved'] == false) {
+          Get.toNamed(ApprovalView.id);
+        } else {
+          Get.toNamed(DashboardView.id);
+        }
       } else {
         Get.snackbar('Error', 'Login Failed');
       }
     } catch (e) {
       log(e.toString());
-      Get.snackbar('Error', e.toString());
     } finally {
       setLoading(false);
+    }
+  }
+
+  Future<void> checkUserRegistration() async {
+    try {
+      Map<String, dynamic> data = await _loginRepository.getStarted();
+      if (data['is_business_registered'] == false) {
+        Get.toNamed(BusinessFormView.id);
+      } else if (data['is_business_approved'] == false) {
+        Get.toNamed(ApprovalView.id);
+      } else {
+        Get.toNamed(DashboardView.id);
+      }
+    } catch (e) {
+      log(e.toString());
     }
   }
 }

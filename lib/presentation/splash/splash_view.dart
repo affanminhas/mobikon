@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
+import 'package:mobikon/presentation/splash/validating_view.dart';
 import 'package:mobikon/presentation/welcome/welcome_view.dart';
+import 'package:mobikon/services/preferences.dart';
 
 class SplashView extends StatefulWidget {
   static const String id = 'splash_view';
@@ -17,7 +19,11 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushNamed(context, WelcomeView.id);
+      if (Preference.isTokenAvailable) {
+        Navigator.pushNamed(context, ValidatingView.id);
+      } else {
+        Navigator.pushNamed(context, WelcomeView.id);
+      }
     });
   }
 
