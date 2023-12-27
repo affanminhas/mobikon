@@ -9,6 +9,7 @@ class Endpoints {
 
   /// Login Endpoints
   static const String loginURL = "$baseUrl/api/accounts/login";
+  static const String loginRefresh = "$baseUrl/api/accounts/login/refresh";
 
   /// Reset Password Endpoints
   static const String resetPasswordURL = "$baseUrl/api/accounts/password-reset";
@@ -20,4 +21,10 @@ class Endpoints {
 
   /// Business Endpoints
   static const String businessURL = "$baseUrl/api/businesses/register";
+
+  /// Profile Endpoints
+  static const String getProfileInfo = "$baseUrl/api/accounts/profile/personal";
+  static const String updateProfileInfo = "$baseUrl/api/accounts/profile/personal";
+  static const String getBusinessInfo = "$baseUrl/api/accounts/profile/business";
+  static const String updateBusinessInfo = "$baseUrl/api/accounts/profile/business";
 }

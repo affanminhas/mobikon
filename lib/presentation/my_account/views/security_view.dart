@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
-import 'package:mobikon/presentation/my_account/myaccount_controller.dart';
+import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/utilities/validators.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 import 'package:mobikon/widgets/custom_text_field.dart';
@@ -29,7 +29,7 @@ class _SecurityViewState extends State<SecurityView> {
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: GetBuilder<MyAccountController>(builder: (accountController) {
+        child: GetBuilder<ProfileController>(builder: (accountController) {
           return Form(
             key: accountController.formKey,
             child: Column(

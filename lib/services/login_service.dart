@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mobikon/constants/endpoints.dart';
 import 'package:mobikon/domain/auth_data_model.dart';
+import 'package:mobikon/domain/get_started_model.dart';
 import 'package:mobikon/extensions.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobikon/infrastructure/exceptions.dart';
@@ -13,7 +14,9 @@ import 'package:mobikon/services/preferences.dart';
 abstract class LoginService extends BaseService {
   Future<bool> login(String email, String password);
 
-  Future<Map<String, dynamic>> getStarted();
+  Future<GetStartedModel> getStarted();
+
+  Future<Map<String, dynamic>> loginRefresh();
 }
 
 class WCAuthService extends LoginService {
@@ -49,7 +52,7 @@ class WCAuthService extends LoginService {
   }
 
   @override
-  Future<Map<String, dynamic>> getStarted() async {
+  Future<GetStartedModel> getStarted() async {
     final Map<String, String> headers = {
       "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
       "Authorization": "Bearer ${Preference.accessToken}",
@@ -62,8 +65,38 @@ class WCAuthService extends LoginService {
       Map<String, dynamic> data = jsonDecode(response.body);
 
       if (response.isApiSuccessful) {
+        GetStartedModel model = GetStartedModel.fromMap(data["data"]);
+        await Preference.saveGetStartedDataModel(model);
+        return model;
+      } else {
+        throw getLoginErrorMessage(response.body);
+      }
+    } on ApiException {
+      rethrow;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> loginRefresh() async {
+    final Map<String, String> headers = {
+      "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
+    };
+    final Map body = {
+      "refresh": Preference.signUpModel.refresh,
+    };
+    try {
+      Uri endpoint = Uri.parse(Endpoints.loginRefresh);
+      http.Response response = await http.post(endpoint, headers: headers, body: body);
+      log(response.body.toString());
+
+      Map<String, dynamic> data = jsonDecode(response.body);
+
+      if (response.isApiSuccessful) {
         return data["data"];
       } else {
+        log('Login Refresh Error');
         throw getLoginErrorMessage(response.body);
       }
     } on ApiException {

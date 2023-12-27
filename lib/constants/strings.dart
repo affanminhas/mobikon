@@ -58,4 +58,5 @@ class Strings {
   /// Account View Assets
   static const String qrCode = 'assets/images/account/qr_code.png';
   static const String lockPerson = 'assets/images/account/lock_person.png';
+  static const String personProfile = 'assets/images/account/person_profile.png';
 }

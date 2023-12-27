@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:mobikon/domain/auth_data_model.dart';
+import 'package:mobikon/domain/get_started_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class _Key {
@@ -29,6 +30,7 @@ class Preference {
 
   static const themeStatus = "THEMESTATUS";
   static const String _userKey = "user-key";
+  static const String _startedKey = "started-key";
 
   static bool get isTokenAvailable => accessToken.isNotEmpty;
 
@@ -47,7 +49,22 @@ class Preference {
     log('saving signup model: ${model.toMap()}');
     try {
       bool isSaved = await _instance.setString(_userKey, jsonEncode(model.toMap()));
-      setAccessToken(model.access);
+      await setAccessToken(model.access);
+      return isSaved;
+    } catch (e) {
+      log(e.toString());
+      rethrow;
+    }
+  }
+
+  static GetStartedModel get startedModel => GetStartedModel.fromMap(
+        jsonDecode(_instance.getString(_startedKey)!),
+      );
+
+  static Future<bool> saveGetStartedDataModel(GetStartedModel model) async {
+    log('saving get started model: ${model.toMap()}');
+    try {
+      bool isSaved = await _instance.setString(_startedKey, jsonEncode(model.toMap()));
       return isSaved;
     } catch (e) {
       log(e.toString());
