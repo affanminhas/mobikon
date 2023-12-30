@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.0.0+6
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
@@ -41,6 +41,11 @@ dependencies:
   http: ^1.1.2
   dio: ^5.4.0
   page_transition: ^2.1.0
+  flutter_dotenv: ^5.1.0
+  shared_preferences: ^2.2.2
+  dotted_border: ^2.1.0
+  image_picker: ^1.0.5
+  cached_network_image: ^3.3.0
 
 dev_dependencies:
   flutter_test:
@@ -66,12 +71,15 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - .env
     - assets/images/splash/
     - assets/images/welcome/
     - assets/images/signup/
     - assets/images/login/
     - assets/images/forgot_password/
     - assets/images/dashboard/
+    - assets/images/home/
+    - assets/images/account/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -99,6 +107,20 @@ flutter:
           weight: 400
         - asset: assets/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf
           weight: 300
+
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Black.ttf
+          weight: 900
+        - asset: assets/fonts/Roboto/Roboto-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Roboto/Roboto-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto/Roboto-Light.ttf
+          weight: 300
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
