@@ -4,6 +4,7 @@ import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/drivers/drivers_view.dart';
+import 'package:mobikon/presentation/home/home_controller.dart';
 import 'package:mobikon/presentation/home/views/home_view.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/presentation/my_account/views/my_account_view.dart';
@@ -43,9 +44,9 @@ class _DashboardViewState extends State<DashboardView> {
   @override
   void initState() {
     super.initState();
-
     Get.find<ProfileController>().getUserProfileInfo();
     Get.find<ProfileController>().getUserBusinessInfo();
+    Get.find<HomeController>().getContainerSize();
   }
 
   @override

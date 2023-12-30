@@ -9,7 +9,7 @@ import 'package:mobikon/presentation/my_account/views/business_details_view.dart
 import 'package:mobikon/presentation/my_account/views/notification_view.dart';
 import 'package:mobikon/presentation/my_account/views/personal_info_view.dart';
 import 'package:mobikon/presentation/my_account/views/security_view.dart';
-import 'package:mobikon/presentation/my_account/views/staff_members_view.dart';
+import 'package:mobikon/presentation/my_account/views/staff_member/staff_members_view.dart';
 import 'package:mobikon/presentation/my_account/widgets/account_item.dart';
 import 'package:mobikon/widgets/custom_image_builder.dart';
 

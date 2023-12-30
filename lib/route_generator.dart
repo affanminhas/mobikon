@@ -3,14 +3,20 @@ import 'package:mobikon/presentation/dashboard/dashboard_view.dart';
 import 'package:mobikon/presentation/forgot_password/views/forgot_email_sent_view.dart';
 import 'package:mobikon/presentation/forgot_password/views/forgot_password_view.dart';
 import 'package:mobikon/presentation/app_views/approval_view.dart';
-import 'package:mobikon/presentation/home/views/container_detaill_view.dart';
+import 'package:mobikon/presentation/home/views/container/container_detaill_view.dart';
+import 'package:mobikon/presentation/home/views/container/container_livefeed_view.dart';
+import 'package:mobikon/presentation/home/views/container/request_container_view.dart';
+import 'package:mobikon/presentation/home/views/container/request_submit_view.dart';
+import 'package:mobikon/presentation/home/views/container/slide_door_feed_view.dart';
+import 'package:mobikon/presentation/home/views/container/track_container_view.dart';
 import 'package:mobikon/presentation/login/views/login_view.dart';
 import 'package:mobikon/presentation/my_account/views/business_details_view.dart';
 import 'package:mobikon/presentation/my_account/views/notification_view.dart';
 import 'package:mobikon/presentation/my_account/views/personal_info_view.dart';
 import 'package:mobikon/presentation/my_account/views/security_view.dart';
-import 'package:mobikon/presentation/my_account/views/staff_member_detail_view.dart';
-import 'package:mobikon/presentation/my_account/views/staff_members_view.dart';
+import 'package:mobikon/presentation/my_account/views/staff_member/edit_staff_member.dart';
+import 'package:mobikon/presentation/my_account/views/staff_member/staff_member_detail_view.dart';
+import 'package:mobikon/presentation/my_account/views/staff_member/staff_members_view.dart';
 import 'package:mobikon/presentation/products/views/add_new_product_view.dart';
 import 'package:mobikon/presentation/products/views/image_preview.dart';
 import 'package:mobikon/presentation/signup/views/business_form_view.dart';
@@ -80,6 +86,18 @@ class RouteGenerator {
         return PageTransition(child: const SecurityView(), type: PageTransitionType.rightToLeft);
       case NotificationView.id:
         return PageTransition(child: const NotificationView(), type: PageTransitionType.rightToLeft);
+      case RequestContainerView.id:
+        return PageTransition(child: const RequestContainerView(), type: PageTransitionType.rightToLeft);
+      case RequestSubmittedView.id:
+        return PageTransition(child: const RequestSubmittedView(), type: PageTransitionType.rightToLeft);
+      case EditStaffMember.id:
+        return PageTransition(child: const EditStaffMember(), type: PageTransitionType.rightToLeft);
+      case ContainerLiveFeedView.id:
+        return PageTransition(child: const ContainerLiveFeedView(), type: PageTransitionType.rightToLeft);
+      case SlideDoorFeedView.id:
+        return PageTransition(child: const SlideDoorFeedView(), type: PageTransitionType.rightToLeft);
+      case TrackContainerView.id:
+        return PageTransition(child: const TrackContainerView(), type: PageTransitionType.rightToLeft);
       case ImagePreview.id:
         ImagePreviewArguments args = settings.arguments as ImagePreviewArguments;
         return PageTransition(child: ImagePreview(image: args.image), type: PageTransitionType.rightToLeft);

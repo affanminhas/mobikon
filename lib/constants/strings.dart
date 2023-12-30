@@ -54,6 +54,8 @@ class Strings {
   static const String cubeIcon = 'assets/images/home/cube.png';
   static const String circuitIcon = 'assets/images/home/circuit.png';
   static const String deleteEmoji = 'assets/images/home/delete_emoji.png';
+  static const String cameraView = 'assets/images/home/camera_view.png';
+  static const String cameraSlide = 'assets/images/home/camera_slide.png';
 
   /// Account View Assets
   static const String qrCode = 'assets/images/account/qr_code.png';

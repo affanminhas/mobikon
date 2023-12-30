@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
-import 'package:mobikon/presentation/home/views/container_detaill_view.dart';
+import 'package:mobikon/presentation/home/views/container/container_detaill_view.dart';
 import 'package:mobikon/presentation/my_account/model/profile_model.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 
