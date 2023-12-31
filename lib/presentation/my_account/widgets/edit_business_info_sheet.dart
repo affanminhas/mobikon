@@ -89,10 +89,10 @@ class _EditBusinessInfoSheetState extends State<EditBusinessInfoSheet> {
                   ),
                   const SizedBox(height: 16),
                   CustomTextField(
-                    onChanged: (value) => accountController.setBusinessTaxNumber(value),
-                    hintText: 'Tax Number',
+                    onChanged: (value) => accountController.setBusinessDescription(value),
+                    hintText: 'Business Description',
                     outlineColor: AppColors.lightGrey,
-                    initialValue: business.taxNumber,
+                    initialValue: business.description,
                     validator: (value) => Validator.formApiValidate(
                       value,
                       'Please enter tax number',

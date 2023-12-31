@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/endpoints.dart';
+import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/my_account/model/profile_model.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/presentation/my_account/views/business_details_view.dart';
 import 'package:mobikon/presentation/my_account/views/notification_view.dart';
 import 'package:mobikon/presentation/my_account/views/personal_info_view.dart';
+import 'package:mobikon/presentation/my_account/views/qr_scan_view.dart';
 import 'package:mobikon/presentation/my_account/views/security_view.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/staff_members_view.dart';
 import 'package:mobikon/presentation/my_account/widgets/account_item.dart';
@@ -75,13 +77,16 @@ class MyAccountView extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    CustomCashedImage(
-                      image: Endpoints.baseUrl + profile.qrCode,
-                      shape: BoxShape.rectangle,
-                      width: 70,
-                      height: 70,
+                    // CustomCashedImage(
+                    //   image: Endpoints.baseUrl + profile.qrCode,
+                    //   shape: BoxShape.rectangle,
+                    //   width: 70,
+                    //   height: 70,
+                    // ),
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, QRScanView.id),
+                      child: Image.asset(Strings.qrCode, width: 48, height: 48),
                     ),
-                    //Image.asset(Strings.qrCode, width: 48, height: 48),
                   ],
                 ),
               ),

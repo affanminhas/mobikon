@@ -56,9 +56,14 @@ class Strings {
   static const String deleteEmoji = 'assets/images/home/delete_emoji.png';
   static const String cameraView = 'assets/images/home/camera_view.png';
   static const String cameraSlide = 'assets/images/home/camera_slide.png';
+  static const String deleteIcon = 'assets/images/home/delete_icon.png';
 
   /// Account View Assets
   static const String qrCode = 'assets/images/account/qr_code.png';
   static const String lockPerson = 'assets/images/account/lock_person.png';
   static const String personProfile = 'assets/images/account/person_profile.png';
+
+  /// Lottie Animations
+  static const String loadingAnimation = 'assets/lottie/loader.json';
+  static const String emptyAnim = 'assets/lottie/empty_anim.json';
 }

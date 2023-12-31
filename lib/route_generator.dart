@@ -13,12 +13,14 @@ import 'package:mobikon/presentation/login/views/login_view.dart';
 import 'package:mobikon/presentation/my_account/views/business_details_view.dart';
 import 'package:mobikon/presentation/my_account/views/notification_view.dart';
 import 'package:mobikon/presentation/my_account/views/personal_info_view.dart';
+import 'package:mobikon/presentation/my_account/views/qr_scan_view.dart';
 import 'package:mobikon/presentation/my_account/views/security_view.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/edit_staff_member.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/staff_member_detail_view.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/staff_members_view.dart';
 import 'package:mobikon/presentation/products/views/add_new_product_view.dart';
 import 'package:mobikon/presentation/products/views/image_preview.dart';
+import 'package:mobikon/presentation/products/views/product_preview.dart';
 import 'package:mobikon/presentation/signup/views/business_form_view.dart';
 import 'package:mobikon/presentation/signup/views/business_success_view.dart';
 import 'package:mobikon/presentation/signup/views/signup_completed_view.dart';
@@ -98,6 +100,10 @@ class RouteGenerator {
         return PageTransition(child: const SlideDoorFeedView(), type: PageTransitionType.rightToLeft);
       case TrackContainerView.id:
         return PageTransition(child: const TrackContainerView(), type: PageTransitionType.rightToLeft);
+      case QRScanView.id:
+        return PageTransition(child: const QRScanView(), type: PageTransitionType.rightToLeft);
+      case ProductPreview.id:
+        return PageTransition(child: ProductPreview(), type: PageTransitionType.rightToLeft);
       case ImagePreview.id:
         ImagePreviewArguments args = settings.arguments as ImagePreviewArguments;
         return PageTransition(child: ImagePreview(image: args.image), type: PageTransitionType.rightToLeft);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/presentation/login/login_controller.dart';
+import 'package:mobikon/widgets/custom_loaders.dart';
 
 class ValidatingView extends StatefulWidget {
   static const String id = 'validating_view';
@@ -23,7 +23,7 @@ class _ValidatingViewState extends State<ValidatingView> {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: CircularProgressIndicator(color: AppColors.primaryColor),
+        child: PrimaryLoader(),
       ),
     );
   }

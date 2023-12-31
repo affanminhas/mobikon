@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:mobikon/domain/container_size_model.dart';
+import 'package:mobikon/presentation/home/model/container_model.dart';
 import 'package:mobikon/repository/home_repo.dart';
 
 class HomeController extends GetxController {
@@ -10,12 +11,15 @@ class HomeController extends GetxController {
   int _cameraSelectedOption = 1;
   int _shelvesSelectedOption = 1;
   List<ContainerSize> _containerSizes = [];
+  List<UserContainer> _allContainers = [];
 
   bool get isLoading => _isLoading;
 
   int get cameraSelectedOption => _cameraSelectedOption;
 
   int get shelvesSelectedOption => _shelvesSelectedOption;
+
+  List<UserContainer> get allContainer => _allContainers;
 
   void setLoading(bool value) {
     _isLoading = value;
@@ -47,6 +51,18 @@ class HomeController extends GetxController {
       update();
     } catch (e) {
       log(e.toString());
+    }
+  }
+
+  /// Get Container Size Api Call
+  Future<void> getAllContainers() async {
+    setLoading(true);
+    try {
+      _allContainers = await _homeRepository.getAllContainers();
+    } catch (e) {
+      log(e.toString());
+    } finally {
+      setLoading(false);
     }
   }
 }

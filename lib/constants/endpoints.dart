@@ -6,6 +6,7 @@ class Endpoints {
 
   /// Warehouse Endpoints
   static const String warehouseURL = "$baseUrl/api/warehouse/container-sizes";
+  static const String getAllContainers = "$baseUrl/api/warehouse/containers";
 
   /// Login Endpoints
   static const String loginURL = "$baseUrl/api/accounts/login";
@@ -27,4 +28,8 @@ class Endpoints {
   static const String updateProfileInfo = "$baseUrl/api/accounts/profile/personal";
   static const String getBusinessInfo = "$baseUrl/api/accounts/profile/business";
   static const String updateBusinessInfo = "$baseUrl/api/accounts/profile/business";
+
+  /// Product Endpoints
+  static const String getProducts = "$baseUrl/api/stock/products/";
+  static const String createProducts = "$baseUrl/api/stock/products/";
 }
