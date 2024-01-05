@@ -12,8 +12,8 @@ class GlobalBinding extends Bindings {
     Get.put<SignUpController>(SignUpController());
     Get.put<LoginController>(LoginController());
     Get.put<ForgotPasswordController>(ForgotPasswordController());
+    Get.put<ProductController>(ProductController());
     Get.put<ProfileController>(ProfileController());
     Get.put<HomeController>(HomeController());
-    Get.put<ProductController>(ProductController());
   }
 }

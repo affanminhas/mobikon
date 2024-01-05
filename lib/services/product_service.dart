@@ -21,17 +21,22 @@ abstract class ProductService extends BaseService {
 }
 
 class WCDashboardService extends ProductService {
-  final Map<String, String> _headers = {
-    "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
-    "Authorization": "Bearer ${Preference.accessToken}",
-    "X-Business-ID": Preference.startedModel.business.id.toString(),
-  };
+  // final Map<String, String> _headers = {
+  //   "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
+  //   "Authorization": "Bearer ${Preference.accessToken}",
+  //   "X-Business-ID": Preference.startedModel.business.id.toString(),
+  // };
 
   @override
   Future<List<Product>> getAllProducts() async {
+    final Map<String, String> headers = {
+      "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
+      "Authorization": "Bearer ${Preference.accessToken}",
+      "X-Business-ID": Preference.startedModel.business.id.toString(),
+    };
     try {
       Uri endpoint = Uri.parse(Endpoints.getProducts);
-      http.Response response = await http.get(endpoint, headers: _headers);
+      http.Response response = await http.get(endpoint, headers: headers);
       log(response.body.toString());
 
       if (response.isApiSuccessful) {
@@ -50,12 +55,17 @@ class WCDashboardService extends ProductService {
 
   @override
   Future<bool> createProduct(Product product) async {
+    final Map<String, String> headers = {
+      "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
+      "Authorization": "Bearer ${Preference.accessToken}",
+      "X-Business-ID": Preference.startedModel.business.id.toString(),
+    };
     var request = http.MultipartRequest('POST', Uri.parse(Endpoints.createProducts));
     request.fields.addAll(product.toMap());
     request.files.add(
       await http.MultipartFile.fromPath('thumbnail', product.thumbnail),
     );
-    request.headers.addAll(_headers);
+    request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
 
@@ -70,9 +80,14 @@ class WCDashboardService extends ProductService {
 
   @override
   Future<Product> getSingleProduct(int productId) async {
+    final Map<String, String> headers = {
+      "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
+      "Authorization": "Bearer ${Preference.accessToken}",
+      "X-Business-ID": Preference.startedModel.business.id.toString(),
+    };
     try {
       Uri endpoint = Uri.parse('${Endpoints.getProducts}$productId/');
-      http.Response response = await http.get(endpoint, headers: _headers);
+      http.Response response = await http.get(endpoint, headers: headers);
       log(response.body.toString());
 
       if (response.isApiSuccessful) {
@@ -91,7 +106,11 @@ class WCDashboardService extends ProductService {
 
   @override
   Future<bool> updateProduct(Product product) async {
-    log(product.updateProductMap().toString());
+    final Map<String, String> headers = {
+      "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
+      "Authorization": "Bearer ${Preference.accessToken}",
+      "X-Business-ID": Preference.startedModel.business.id.toString(),
+    };
     try {
       var request = http.MultipartRequest('PATCH', Uri.parse('${Endpoints.getProducts}${product.id}/'));
       request.fields.addAll(product.updateProductMap());
@@ -101,7 +120,7 @@ class WCDashboardService extends ProductService {
           await http.MultipartFile.fromPath('thumbnail', product.thumbnail),
         );
       }
-      request.headers.addAll(_headers);
+      request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
 
