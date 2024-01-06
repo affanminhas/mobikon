@@ -39,4 +39,13 @@ class ProductRepository extends ProductService {
       rethrow;
     }
   }
+
+  @override
+  Future<bool> deleteProduct(String productId) async{
+    try {
+      return await wcDashboardService.deleteProduct(productId);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

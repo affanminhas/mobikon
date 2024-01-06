@@ -30,6 +30,5 @@ class Endpoints {
   static const String updateBusinessInfo = "$baseUrl/api/accounts/profile/business";
 
   /// Product Endpoints
-  static const String getProducts = "$baseUrl/api/stock/products/";
-  static const String createProducts = "$baseUrl/api/stock/products/";
+  static const String productAPI = "$baseUrl/api/stock/products/";
 }

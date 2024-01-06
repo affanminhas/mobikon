@@ -106,7 +106,7 @@ class _EditInfoSheetState extends State<EditInfoSheet> {
                         onTap: profileController.isProfileEditFormValid
                             ? () {
                                 if (_editInfoFormKey.currentState?.validate() ?? false) {
-                                  profileController.updateUserProfileInfo();
+                                  profileController.updateUserProfileInfo(context);
                                   // Navigator.pop(context);
                                 }
                               }

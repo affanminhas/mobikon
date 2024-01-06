@@ -8,6 +8,7 @@ import 'package:mobikon/presentation/products/widget/edit_product_sheet.dart';
 import 'package:mobikon/widgets/custom_appbar.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 import 'package:mobikon/widgets/custom_image_builder.dart';
+import 'package:mobikon/widgets/custom_loader.dart';
 import 'package:mobikon/widgets/custom_loaders.dart';
 
 class ProductPreview extends StatelessWidget {
@@ -18,74 +19,80 @@ class ProductPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 8,
-              offset: const Offset(0, 1),
-            )
-          ],
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: SecondaryButton(
-                bgColor: AppColors.redColor2,
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.remove, color: Colors.white),
-                    const SizedBox(width: 4),
-                    Text(
-                      'Delete Product',
-                      style: robotoCondensedBold.copyWith(fontSize: 16, color: Colors.white),
-                    ),
-                  ],
-                ),
+      bottomNavigationBar: GetBuilder<ProductController>(builder: (productController) {
+        return Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 8,
+                offset: const Offset(0, 1),
+              )
+            ],
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: productController.isDeleting
+                    ? const CustomLoadingButton(
+                        text: 'Deleting ...',
+                      )
+                    : SecondaryButton(
+                        bgColor: AppColors.redColor2,
+                        onTap: () {
+                          productController.deleteProduct(productController.selectedProduct.id.toString());
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.remove, color: Colors.white),
+                            const SizedBox(width: 4),
+                            Text(
+                              'Delete Product',
+                              style: robotoCondensedBold.copyWith(fontSize: 16, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
               ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: SecondaryButton(
-                bgColor: AppColors.blueColor,
-                disabledColor: AppColors.primaryColor50,
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (context) {
-                      return Padding(
-                        padding: MediaQuery.of(context).viewInsets,
-                        child: const EditProductSheet(),
-                      );
-                    },
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.edit, color: Colors.white),
-                    const SizedBox(width: 4),
-                    Text(
-                      'Edit Product',
-                      style: robotoCondensedBold.copyWith(fontSize: 15, color: Colors.white),
-                    ),
-                  ],
+              const SizedBox(width: 16),
+              Expanded(
+                child: SecondaryButton(
+                  bgColor: AppColors.blueColor,
+                  disabledColor: AppColors.primaryColor50,
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (context) {
+                        return Padding(
+                          padding: MediaQuery.of(context).viewInsets,
+                          child: const EditProductSheet(),
+                        );
+                      },
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.edit, color: Colors.white),
+                      const SizedBox(width: 4),
+                      Text(
+                        'Edit Product',
+                        style: robotoCondensedBold.copyWith(fontSize: 15, color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
-        ),
-      ),
+              )
+            ],
+          ),
+        );
+      }),
       body: SafeArea(
         child: GetBuilder<ProductController>(
           builder: (productController) {

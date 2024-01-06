@@ -8,6 +8,7 @@ import 'package:mobikon/repository/product_repo.dart';
 class ProductController extends GetxController {
   final ProductRepository _productRepository = ProductRepository();
   bool _isLoading = false;
+  bool _isDeleting = false;
   String _searchText = '';
   List<Product> _productList = [];
   Product _selectedProduct = Product.initial();
@@ -20,6 +21,8 @@ class ProductController extends GetxController {
   XFile _productEditThumbnail = XFile('');
 
   bool get isLoading => _isLoading;
+
+  bool get isDeleting => _isDeleting;
 
   List<Product> get productList => _productList;
 
@@ -45,6 +48,11 @@ class ProductController extends GetxController {
 
   void setLoading(bool value) {
     _isLoading = value;
+    update();
+  }
+
+  void setDeleting(bool value) {
+    _isDeleting = value;
     update();
   }
 
@@ -163,6 +171,20 @@ class ProductController extends GetxController {
       log(e.toString());
     } finally {
       setLoading(false);
+    }
+  }
+
+  /// Delete Product Api Call
+  Future<void> deleteProduct(String productId) async {
+    setDeleting(true);
+    try {
+      await _productRepository.deleteProduct(productId);
+      await getAllProducts();
+      Get.back();
+    } catch (e) {
+      log(e.toString());
+    } finally {
+      setDeleting(false);
     }
   }
 }

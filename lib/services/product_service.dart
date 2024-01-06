@@ -17,16 +17,12 @@ abstract class ProductService extends BaseService {
 
   Future<bool> updateProduct(Product product);
 
+  Future<bool> deleteProduct(String productId);
+
   Future<Product> getSingleProduct(int productId);
 }
 
 class WCDashboardService extends ProductService {
-  // final Map<String, String> _headers = {
-  //   "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
-  //   "Authorization": "Bearer ${Preference.accessToken}",
-  //   "X-Business-ID": Preference.startedModel.business.id.toString(),
-  // };
-
   @override
   Future<List<Product>> getAllProducts() async {
     final Map<String, String> headers = {
@@ -35,7 +31,7 @@ class WCDashboardService extends ProductService {
       "X-Business-ID": Preference.startedModel.business.id.toString(),
     };
     try {
-      Uri endpoint = Uri.parse(Endpoints.getProducts);
+      Uri endpoint = Uri.parse(Endpoints.productAPI);
       http.Response response = await http.get(endpoint, headers: headers);
       log(response.body.toString());
 
@@ -60,7 +56,7 @@ class WCDashboardService extends ProductService {
       "Authorization": "Bearer ${Preference.accessToken}",
       "X-Business-ID": Preference.startedModel.business.id.toString(),
     };
-    var request = http.MultipartRequest('POST', Uri.parse(Endpoints.createProducts));
+    var request = http.MultipartRequest('POST', Uri.parse(Endpoints.productAPI));
     request.fields.addAll(product.toMap());
     request.files.add(
       await http.MultipartFile.fromPath('thumbnail', product.thumbnail),
@@ -86,7 +82,7 @@ class WCDashboardService extends ProductService {
       "X-Business-ID": Preference.startedModel.business.id.toString(),
     };
     try {
-      Uri endpoint = Uri.parse('${Endpoints.getProducts}$productId/');
+      Uri endpoint = Uri.parse('${Endpoints.productAPI}$productId/');
       http.Response response = await http.get(endpoint, headers: headers);
       log(response.body.toString());
 
@@ -112,7 +108,7 @@ class WCDashboardService extends ProductService {
       "X-Business-ID": Preference.startedModel.business.id.toString(),
     };
     try {
-      var request = http.MultipartRequest('PATCH', Uri.parse('${Endpoints.getProducts}${product.id}/'));
+      var request = http.MultipartRequest('PATCH', Uri.parse('${Endpoints.productAPI}${product.id}/'));
       request.fields.addAll(product.updateProductMap());
       log('Thumbnail: ${product.thumbnail}');
       if (product.thumbnail.isNotEmpty) {
@@ -132,6 +128,30 @@ class WCDashboardService extends ProductService {
       } else {
         log(response.reasonPhrase.toString());
         return false;
+      }
+    } on ApiException {
+      rethrow;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> deleteProduct(String productId) async {
+    final Map<String, String> headers = {
+      "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
+      "Authorization": "Bearer ${Preference.accessToken}",
+      "X-Business-ID": Preference.startedModel.business.id.toString(),
+    };
+    try {
+      Uri endpoint = Uri.parse('${Endpoints.productAPI}$productId/');
+      http.Response response = await http.delete(endpoint, headers: headers);
+      log(response.body.toString());
+
+      if (response.isApiSuccessful) {
+        return true;
+      } else {
+        throw ApiException('Product', response.statusCode, 'Error while deleting product');
       }
     } on ApiException {
       rethrow;

@@ -62,6 +62,7 @@ class Strings {
   static const String qrCode = 'assets/images/account/qr_code.png';
   static const String lockPerson = 'assets/images/account/lock_person.png';
   static const String personProfile = 'assets/images/account/person_profile.png';
+  static const String checkIcon = 'assets/images/account/check_icon.png';
 
   /// Lottie Animations
   static const String loadingAnimation = 'assets/lottie/loader.json';

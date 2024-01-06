@@ -133,7 +133,7 @@ class _EditBusinessInfoSheetState extends State<EditBusinessInfoSheet> {
                           onTap: accountController.isBusinessEditFormValid
                               ? () {
                                   if (_editInfoFormKey.currentState?.validate() ?? false) {
-                                    accountController.updateUserBusinessInfo();
+                                    accountController.updateUserBusinessInfo(context);
                                   }
                                 }
                               : null,

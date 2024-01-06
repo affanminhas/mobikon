@@ -18,9 +18,6 @@ abstract class HomeService extends BaseService {
 }
 
 class WCDashboardService extends HomeService {
-  // final Map<String, String> _headers = {
-  //   "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
-  // };
 
   @override
   Future<List<ContainerSize>> getContainerSize() async {
