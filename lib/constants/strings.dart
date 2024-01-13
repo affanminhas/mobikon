@@ -74,4 +74,5 @@ class Strings {
   /// Stock History View Assets
   static const String personAsset = 'assets/images/stock/person.png';
   static const String calendarAsset = 'assets/images/stock/calendar.png';
+  static const String sadIcon = 'assets/images/stock/sad_icon.png';
 }

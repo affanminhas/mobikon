@@ -90,8 +90,8 @@ class HomeView extends StatelessWidget {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                child: ListView(
+                                  padding: const EdgeInsets.all(0),
                                   children: [
                                     Text('Recent Activity', style: robotoCondensedBold.copyWith(fontSize: 18)),
                                     const SizedBox(height: 4),
@@ -187,8 +187,7 @@ class HomeView extends StatelessWidget {
                                     ),
                                     const SizedBox(height: 20),
                                     Expanded(
-                                      child: ListView(
-                                        padding: const EdgeInsets.all(0),
+                                      child: Column(
                                         children: [
                                           Row(
                                             children: [
