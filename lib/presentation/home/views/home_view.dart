@@ -12,6 +12,7 @@ import 'package:mobikon/presentation/home/widgets/menu_item_view.dart';
 import 'package:mobikon/presentation/my_account/model/profile_model.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/presentation/products/controller/product_controller.dart';
+import 'package:mobikon/presentation/stocks/views/stock_history_view.dart';
 import 'package:mobikon/widgets/custom_empty_widget.dart';
 import 'package:mobikon/widgets/custom_image_builder.dart';
 import 'package:mobikon/widgets/custom_loaders.dart';
@@ -211,22 +212,25 @@ class HomeView extends StatelessWidget {
                                             ],
                                           ),
                                           const SizedBox(height: 24),
-                                          const Row(
+                                          Row(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Expanded(
+                                              const Expanded(
                                                 child: MenuItemView(
                                                   title: 'Total Staff Members',
                                                   value: '5',
                                                   subTitle: '26 Added',
                                                 ),
                                               ),
-                                              SizedBox(width: 16),
+                                              const SizedBox(width: 16),
                                               Expanded(
-                                                child: MenuItemView(
-                                                  title: 'Total Stock',
-                                                  value: '1890',
-                                                  subTitle: '26 Added',
+                                                child: GestureDetector(
+                                                  onTap: () => Navigator.pushNamed(context, StockHistoryView.id),
+                                                  child: const MenuItemView(
+                                                    title: 'Total Stock',
+                                                    value: '1890',
+                                                    subTitle: '26 Added',
+                                                  ),
                                                 ),
                                               ),
                                             ],

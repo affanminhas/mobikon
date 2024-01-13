@@ -89,6 +89,10 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           //hintText: hintText,
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(radius),
+            borderSide: BorderSide(color: outlineColor ?? Colors.transparent),
+          ),
           label: Text(
             hintText!,
             style: hintStyle ?? robotoCondensedRegular.copyWith(color: AppColors.primaryColor, fontSize: 15),

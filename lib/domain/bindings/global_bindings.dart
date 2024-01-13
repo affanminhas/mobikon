@@ -5,6 +5,7 @@ import 'package:mobikon/presentation/login/login_controller.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/presentation/products/controller/product_controller.dart';
 import 'package:mobikon/presentation/signup/signup_controller.dart';
+import 'package:mobikon/presentation/stocks/controllers/stock_controller.dart';
 
 class GlobalBinding extends Bindings {
   @override
@@ -15,5 +16,6 @@ class GlobalBinding extends Bindings {
     Get.put<ProductController>(ProductController());
     Get.put<ProfileController>(ProfileController());
     Get.put<HomeController>(HomeController());
+    Get.put<StockController>(StockController());
   }
 }

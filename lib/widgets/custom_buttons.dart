@@ -9,6 +9,7 @@ class PrimaryButton extends StatelessWidget {
   final TextStyle? textStyle;
   final Color disabledColor;
   final Color disabledTextColor;
+  final Color borderColor;
   final Function()? onTap;
   final Widget? child;
   final double width;
@@ -22,6 +23,7 @@ class PrimaryButton extends StatelessWidget {
     this.textColor = AppColors.bgColor,
     this.disabledColor = AppColors.lightGrey,
     this.disabledTextColor = AppColors.primaryColor,
+    this.borderColor = Colors.transparent,
     required this.onTap,
     this.child,
     this.width = double.infinity,
@@ -38,6 +40,7 @@ class PrimaryButton extends StatelessWidget {
       disabledTextColor: disabledTextColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
+        side: BorderSide(color: borderColor),
       ),
       onPressed: onTap,
       child: child ??

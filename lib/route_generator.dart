@@ -31,6 +31,9 @@ import 'package:mobikon/presentation/signup/views/verify_code_view.dart';
 import 'package:mobikon/presentation/signup/views/verify_email_view.dart';
 import 'package:mobikon/presentation/splash/splash_view.dart';
 import 'package:mobikon/presentation/splash/validating_view.dart';
+import 'package:mobikon/presentation/stocks/views/add_stock_view.dart';
+import 'package:mobikon/presentation/stocks/views/stock_entry_view.dart';
+import 'package:mobikon/presentation/stocks/views/stock_history_view.dart';
 import 'package:mobikon/presentation/welcome/welcome_view.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -103,7 +106,13 @@ class RouteGenerator {
       case QRScanView.id:
         return PageTransition(child: const QRScanView(), type: PageTransitionType.rightToLeft);
       case ProductPreview.id:
-        return PageTransition(child: ProductPreview(), type: PageTransitionType.rightToLeft);
+        return PageTransition(child: const ProductPreview(), type: PageTransitionType.rightToLeft);
+      case StockHistoryView.id:
+        return PageTransition(child: const StockHistoryView(), type: PageTransitionType.rightToLeft);
+      case AddStockView.id:
+        return PageTransition(child: const AddStockView(), type: PageTransitionType.rightToLeft);
+      case StockEntryView.id:
+        return PageTransition(child: const StockEntryView(), type: PageTransitionType.rightToLeft);
       case ImagePreview.id:
         ImagePreviewArguments args = settings.arguments as ImagePreviewArguments;
         return PageTransition(child: ImagePreview(image: args.image), type: PageTransitionType.rightToLeft);
