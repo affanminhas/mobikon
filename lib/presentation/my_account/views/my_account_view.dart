@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/endpoints.dart';
+import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/my_account/model/profile_model.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/presentation/my_account/views/business_details_view.dart';
 import 'package:mobikon/presentation/my_account/views/notification_view.dart';
 import 'package:mobikon/presentation/my_account/views/personal_info_view.dart';
+import 'package:mobikon/presentation/my_account/views/qr_scan_view.dart';
 import 'package:mobikon/presentation/my_account/views/security_view.dart';
-import 'package:mobikon/presentation/my_account/views/staff_members_view.dart';
+import 'package:mobikon/presentation/my_account/views/staff_member/staff_members_view.dart';
 import 'package:mobikon/presentation/my_account/widgets/account_item.dart';
 import 'package:mobikon/widgets/custom_image_builder.dart';
 
-class MyAccountView extends StatelessWidget {
+class MyAccountView extends StatefulWidget {
   const MyAccountView({super.key});
 
+  @override
+  State<MyAccountView> createState() => _MyAccountViewState();
+}
+
+class _MyAccountViewState extends State<MyAccountView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,7 +48,6 @@ class MyAccountView extends StatelessWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 decoration: BoxDecoration(
-                  //color: Colors.grey.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -49,14 +56,53 @@ class MyAccountView extends StatelessWidget {
                       alignment: Alignment.bottomRight,
                       children: [
                         CustomCashedImage(image: Endpoints.baseUrl + profile.profilePicture),
-                        Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryColor,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 2),
+                        GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Select Image'),
+                                content: SingleChildScrollView(
+                                  child: ListBody(
+                                    children: <Widget>[
+                                      GestureDetector(
+                                        child: const Text('Gallery'),
+                                        onTap: () async {
+                                          Navigator.of(context).pop();
+                                          final ImagePicker picker = ImagePicker();
+                                          XFile? image = await picker.pickImage(source: ImageSource.gallery);
+                                          if (image != null && mounted) {
+                                            profileController.updateUserProfileImage(image.path, context);
+                                          }
+                                        },
+                                      ),
+                                      const Padding(padding: EdgeInsets.all(8.0)),
+                                      GestureDetector(
+                                        child: const Text('Camera'),
+                                        onTap: () async {
+                                          Navigator.of(context).pop();
+                                          final ImagePicker picker = ImagePicker();
+                                          final XFile? image = await picker.pickImage(source: ImageSource.camera);
+                                          if (image != null && mounted) {
+                                            profileController.updateUserProfileImage(image.path, context);
+                                          }
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: AppColors.primaryColor,
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.white, width: 2),
+                            ),
+                            child: const Icon(Icons.edit, color: Colors.white),
                           ),
-                          child: const Icon(Icons.edit, color: Colors.white),
                         )
                       ],
                     ),
@@ -75,13 +121,16 @@ class MyAccountView extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    CustomCashedImage(
-                      image: Endpoints.baseUrl + profile.qrCode,
-                      shape: BoxShape.rectangle,
-                      width: 70,
-                      height: 70,
+                    // CustomCashedImage(
+                    //   image: Endpoints.baseUrl + profile.qrCode,
+                    //   shape: BoxShape.rectangle,
+                    //   width: 70,
+                    //   height: 70,
+                    // ),
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, QRScanView.id),
+                      child: Image.asset(Strings.qrCode, width: 35, height: 35),
                     ),
-                    //Image.asset(Strings.qrCode, width: 48, height: 48),
                   ],
                 ),
               ),

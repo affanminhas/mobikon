@@ -40,4 +40,13 @@ class ProfileRepository extends ProfileService {
       rethrow;
     }
   }
+
+  @override
+  Future<bool> updateProfileImage(String profileImage) async{
+    try {
+      return await wcProfileService.updateProfileImage(profileImage);
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

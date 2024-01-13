@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:mobikon/presentation/my_account/model/business_model.dart';
 import 'package:mobikon/presentation/my_account/model/profile_model.dart';
 import 'package:mobikon/repository/profile_repo.dart';
+import 'package:mobikon/widgets/custom_popup.dart';
 
 class ProfileController extends GetxController {
   final ProfileRepository _profileRepository = ProfileRepository();
@@ -214,7 +215,7 @@ class ProfileController extends GetxController {
   }
 
   /// Update User Profile Api Call
-  Future<void> updateUserProfileInfo() async {
+  Future<void> updateUserProfileInfo(BuildContext context) async {
     try {
       setLoading(true);
       UserProfile profile = UserProfile(
@@ -228,6 +229,7 @@ class ProfileController extends GetxController {
       await _profileRepository.updatePersonalInfo(profile);
       await getUserProfileInfo();
       Get.back();
+      AppDialogs.showSuccessDialog(context, 'Your profile has been updated successfully.');
     } catch (e) {
       log(e.toString());
     } finally {
@@ -235,8 +237,21 @@ class ProfileController extends GetxController {
     }
   }
 
+  /// Update User Profile Image Api Call
+  Future<void> updateUserProfileImage(String image, BuildContext context) async {
+    try {
+      await _profileRepository.updateProfileImage(image);
+      await getUserProfileInfo();
+      //Get.back();
+      AppDialogs.showSuccessDialog(context, 'Your profile has been updated successfully.');
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+
   /// Update User Business Profile Api Call
-  Future<void> updateUserBusinessInfo() async {
+  Future<void> updateUserBusinessInfo(BuildContext context) async {
     try {
       setLoading(true);
       BusinessInfo businessInfo = BusinessInfo(
@@ -255,6 +270,7 @@ class ProfileController extends GetxController {
       await _profileRepository.updateBusinessInfo(businessInfo);
       await getUserBusinessInfo();
       Get.back();
+      AppDialogs.showSuccessDialog(context, 'Your business details has been updated successfully.');
     } catch (e) {
       log(e.toString());
     } finally {

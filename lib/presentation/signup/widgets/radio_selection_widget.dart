@@ -6,11 +6,15 @@ import 'package:mobikon/presentation/signup/signup_controller.dart';
 
 class RadioSelectionContainer extends StatelessWidget {
   final int groupValue;
+  final String firstOption;
+  final String secondOption;
   final Function(int?)? onChanged;
 
   const RadioSelectionContainer({
     super.key,
     required this.groupValue,
+    this.firstOption = 'No',
+    this.secondOption = 'Yes',
     required this.onChanged,
   });
 
@@ -35,7 +39,7 @@ class RadioSelectionContainer extends StatelessWidget {
                       groupValue: groupValue,
                     ),
                     Text(
-                      'No',
+                      firstOption,
                       style: robotoCondensedRegular.copyWith(
                         fontSize: 15,
                         color: AppColors.black1,
@@ -61,7 +65,7 @@ class RadioSelectionContainer extends StatelessWidget {
                       groupValue: groupValue,
                     ),
                     Text(
-                      'Yes',
+                      secondOption,
                       style: robotoCondensedRegular.copyWith(
                         fontSize: 15,
                         color: AppColors.black1,

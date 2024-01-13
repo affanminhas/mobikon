@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/typography.dart';
-import 'package:mobikon/presentation/my_account/views/staff_member_detail_view.dart';
+import 'package:mobikon/presentation/my_account/views/staff_member/edit_staff_member.dart';
+import 'package:mobikon/presentation/my_account/views/staff_member/staff_member_detail_view.dart';
 
 class StaffMembersView extends StatelessWidget {
   static const String id = '/staff-members-view';
@@ -27,7 +28,9 @@ class StaffMembersView extends StatelessWidget {
                   Text('Staff Members ', style: robotoCondensedBold.copyWith(fontSize: 18)),
                   const Spacer(),
                   GestureDetector(
-                    onTap: () => {},
+                    onTap: () {
+                      Navigator.pushNamed(context, EditStaffMember.id);
+                    },
                     child: Row(
                       children: [
                         const Icon(Icons.add, color: AppColors.blueColor),

@@ -18,14 +18,12 @@ abstract class ProfileService extends BaseService {
 
   Future<bool> updatePersonalInfo(UserProfile profile);
 
+  Future<bool> updateProfileImage(String profileImage);
+
   Future<bool> updateBusinessInfo(BusinessInfo business);
 }
 
 class WCProfileService extends ProfileService {
-  final Map<String, String> _headers = {
-    "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
-    "Authorization": "Bearer ${Preference.accessToken}",
-  };
 
   @override
   Future<UserProfile> getPersonalInfo() async {
@@ -53,6 +51,10 @@ class WCProfileService extends ProfileService {
 
   @override
   Future<bool> updatePersonalInfo(UserProfile profile) async {
+    final Map<String, String> headers = {
+      "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
+      "Authorization": "Bearer ${Preference.accessToken}",
+    };
     final Map body = {
       "first_name": profile.firstName,
       "last_name": profile.lastName,
@@ -60,7 +62,7 @@ class WCProfileService extends ProfileService {
     };
     try {
       Uri endpoint = Uri.parse(Endpoints.updateProfileInfo);
-      http.Response response = await http.patch(endpoint, headers: _headers, body: body);
+      http.Response response = await http.patch(endpoint, headers: headers, body: body);
       log(response.body.toString());
 
       if (response.isApiSuccessful) {
@@ -129,5 +131,43 @@ class WCProfileService extends ProfileService {
     } catch (e) {
       rethrow;
     }
+  }
+
+  @override
+  Future<bool> updateProfileImage(String profileImage) async {
+    final Map<String, String> headers = {
+      "X-Api-Key": dotenv.env['X_API_KEY'] ?? '',
+      "Authorization": "Bearer ${Preference.accessToken}",
+    };
+
+    var request = http.MultipartRequest('PATCH', Uri.parse(Endpoints.updateProfileInfo));
+    request.files.add(await http.MultipartFile.fromPath('profile_picture', profileImage));
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      log(await response.stream.bytesToString());
+      return true;
+    } else {
+      log(response.reasonPhrase.toString());
+      return false;
+    }
+
+    // try {
+    //   Uri endpoint = Uri.parse(Endpoints.updateBusinessInfo);
+    //   http.Response response = await http.patch(endpoint, headers: headers, body: body);
+    //   log(response.body.toString());
+    //
+    //   if (response.isApiSuccessful) {
+    //     return true;
+    //   } else {
+    //     throw ApiException('Business', response.statusCode, 'Error while updating business info');
+    //   }
+    // } on ApiException {
+    //   rethrow;
+    // } catch (e) {
+    //   rethrow;
+    // }
   }
 }

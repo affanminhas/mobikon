@@ -4,9 +4,11 @@ import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/drivers/drivers_view.dart';
+import 'package:mobikon/presentation/home/home_controller.dart';
 import 'package:mobikon/presentation/home/views/home_view.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/presentation/my_account/views/my_account_view.dart';
+import 'package:mobikon/presentation/products/controller/product_controller.dart';
 import 'package:mobikon/presentation/products/views/products_view.dart';
 
 class DashboardView extends StatefulWidget {
@@ -43,14 +45,17 @@ class _DashboardViewState extends State<DashboardView> {
   @override
   void initState() {
     super.initState();
-
     Get.find<ProfileController>().getUserProfileInfo();
     Get.find<ProfileController>().getUserBusinessInfo();
+    Get.find<ProductController>().getAllProducts();
+    Get.find<HomeController>().getContainerSize();
+    Get.find<HomeController>().getAllContainers();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: PopScope(
         canPop: false,
         child: Stack(

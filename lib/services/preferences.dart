@@ -58,7 +58,7 @@ class Preference {
   }
 
   static GetStartedModel get startedModel => GetStartedModel.fromMap(
-        jsonDecode(_instance.getString(_startedKey)!),
+        jsonDecode(_instance.getString(_startedKey) ?? '{}'),
       );
 
   static Future<bool> saveGetStartedDataModel(GetStartedModel model) async {
