@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/typography.dart';
 
-class NotificationView extends StatelessWidget {
+class NotificationControlView extends StatelessWidget {
   static const String id = '/notificationView';
 
-  const NotificationView({super.key});
+  const NotificationControlView({super.key});
 
   @override
   Widget build(BuildContext context) {

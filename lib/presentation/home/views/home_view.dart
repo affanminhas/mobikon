@@ -11,14 +11,18 @@ import 'package:mobikon/presentation/home/views/container/container_detaill_view
 import 'package:mobikon/presentation/home/widgets/menu_item_view.dart';
 import 'package:mobikon/presentation/my_account/model/profile_model.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
+import 'package:mobikon/presentation/notification/views/notification_view.dart';
 import 'package:mobikon/presentation/products/controller/product_controller.dart';
+import 'package:mobikon/presentation/stocks/controllers/stock_controller.dart';
 import 'package:mobikon/presentation/stocks/views/stock_history_view.dart';
 import 'package:mobikon/widgets/custom_empty_widget.dart';
 import 'package:mobikon/widgets/custom_image_builder.dart';
 import 'package:mobikon/widgets/custom_loaders.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  final Function(int) onMenuTap;
+
+  const HomeView({super.key, required this.onMenuTap});
 
   @override
   Widget build(BuildContext context) {
@@ -63,14 +67,19 @@ class HomeView extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 15),
-                            Container(
-                              width: 48,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.2),
-                                borderRadius: BorderRadius.circular(10),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, NotificationView.id);
+                              },
+                              child: Container(
+                                width: 48,
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: const Icon(Icons.notifications, color: Colors.white),
                               ),
-                              child: const Icon(Icons.notifications, color: Colors.white),
                             )
                           ],
                         ),
@@ -186,57 +195,60 @@ class HomeView extends StatelessWidget {
                                       style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
                                     ),
                                     const SizedBox(height: 20),
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: MenuItemView(
-                                                  title: 'Total Containers',
-                                                  value: homeController.allContainer.length.toString(),
-                                                  subTitle: '2 Containers Requested',
-                                                ),
+                                    Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: MenuItemView(
+                                                title: 'Total Containers',
+                                                value: homeController.allContainer.length.toString(),
+                                                subTitle: '2 Containers Requested',
                                               ),
-                                              const SizedBox(width: 16),
-                                              Expanded(
-                                                child: GetBuilder<ProductController>(builder: (productController) {
-                                                  return MenuItemView(
+                                            ),
+                                            const SizedBox(width: 16),
+                                            Expanded(
+                                              child: GetBuilder<ProductController>(builder: (productController) {
+                                                return GestureDetector(
+                                                  onTap: () => onMenuTap(1),
+                                                  child: MenuItemView(
                                                     title: 'Total Products',
                                                     value: productController.productList.length.toString(),
                                                     subTitle: '24 Products Added',
+                                                  ),
+                                                );
+                                              }),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 24),
+                                        Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            const Expanded(
+                                              child: MenuItemView(
+                                                title: 'Total Staffs',
+                                                value: '5',
+                                                subTitle: '26 Added',
+                                              ),
+                                            ),
+                                            const SizedBox(width: 16),
+                                            Expanded(
+                                              child: GestureDetector(
+                                                onTap: () => onMenuTap(2),
+                                                child: GetBuilder<StockController>(builder: (stockController) {
+                                                  return MenuItemView(
+                                                    title: 'Total Stock',
+                                                    value: stockController.stockHistory.records.length.toString(),
+                                                    subTitle: '26 Added',
                                                   );
                                                 }),
                                               ),
-                                            ],
-                                          ),
-                                          const SizedBox(height: 24),
-                                          Row(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              const Expanded(
-                                                child: MenuItemView(
-                                                  title: 'Total Staff Members',
-                                                  value: '5',
-                                                  subTitle: '26 Added',
-                                                ),
-                                              ),
-                                              const SizedBox(width: 16),
-                                              Expanded(
-                                                child: GestureDetector(
-                                                  onTap: () => Navigator.pushNamed(context, StockHistoryView.id),
-                                                  child: const MenuItemView(
-                                                    title: 'Total Stock',
-                                                    value: '1890',
-                                                    subTitle: '26 Added',
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(height: 24),
-                                        ],
-                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 24),
+                                      ],
                                     ),
                                     const SizedBox(height: 65),
                                   ],

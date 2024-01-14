@@ -25,7 +25,7 @@ class _StockHistoryViewState extends State<StockHistoryView> {
   @override
   void initState() {
     super.initState();
-    Get.find<StockController>().getAllStockHistory();
+    //Get.find<StockController>().getAllStockHistory();
   }
 
   @override
@@ -156,6 +156,7 @@ class _StockHistoryViewState extends State<StockHistoryView> {
                                 ),
                         ),
                 ),
+                SizedBox(height: 90)
               ],
             );
           },

@@ -50,6 +50,8 @@ class Strings {
   static const String deliveriesAsset = 'assets/images/dashboard/deliveries_asset.png';
   static const String driversAsset = 'assets/images/dashboard/drivers_asset.png';
   static const String myAccountAsset = 'assets/images/dashboard/account_asset.png';
+  static const String stockAsset = 'assets/images/dashboard/stocks_asset.png';
+  static const String reportAsset = 'assets/images/dashboard/report_asset.png';
 
   /// Home View Assets
   static const String waveIcon = 'assets/images/home/wave.png';
@@ -66,6 +68,7 @@ class Strings {
   static const String lockPerson = 'assets/images/account/lock_person.png';
   static const String personProfile = 'assets/images/account/person_profile.png';
   static const String checkIcon = 'assets/images/account/check_icon.png';
+  static const String logoutIcon = 'assets/images/account/logout.png';
 
   /// Lottie Animations
   static const String loadingAnimation = 'assets/lottie/loader.json';

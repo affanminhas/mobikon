@@ -8,12 +8,14 @@ import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/my_account/model/profile_model.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/presentation/my_account/views/business_details_view.dart';
-import 'package:mobikon/presentation/my_account/views/notification_view.dart';
+import 'package:mobikon/presentation/my_account/views/notification_control_view.dart';
 import 'package:mobikon/presentation/my_account/views/personal_info_view.dart';
 import 'package:mobikon/presentation/my_account/views/qr_scan_view.dart';
 import 'package:mobikon/presentation/my_account/views/security_view.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/staff_members_view.dart';
 import 'package:mobikon/presentation/my_account/widgets/account_item.dart';
+import 'package:mobikon/presentation/products/widget/logout_dialog.dart';
+import 'package:mobikon/widgets/custom_buttons.dart';
 import 'package:mobikon/widgets/custom_image_builder.dart';
 
 class MyAccountView extends StatefulWidget {
@@ -159,7 +161,7 @@ class _MyAccountViewState extends State<MyAccountView> {
                     AccountItem(
                       title: 'Notifications',
                       icon: Icons.notifications,
-                      onTap: () => Navigator.pushNamed(context, NotificationView.id),
+                      onTap: () => Navigator.pushNamed(context, NotificationControlView.id),
                     ),
                     const SizedBox(height: 30),
                     AccountItem(
@@ -168,6 +170,36 @@ class _MyAccountViewState extends State<MyAccountView> {
                       onTap: () => Navigator.pushNamed(context, SecurityView.id),
                     ),
                   ],
+                ),
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 100),
+                child: PrimaryButton(
+                  bgColor: AppColors.redColor,
+                  disabledColor: AppColors.primaryColor50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.logout, color: Colors.white),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Logout',
+                        style: robotoCondensedMedium.copyWith(fontSize: 16, color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                          backgroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          content: const LogoutDialog()),
+                    );
+                  },
                 ),
               )
             ],

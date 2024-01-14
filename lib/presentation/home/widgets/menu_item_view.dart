@@ -6,12 +6,14 @@ class MenuItemView extends StatelessWidget {
   final String title;
   final String value;
   final String subTitle;
+  final TextStyle? titleStyle;
 
   const MenuItemView({
     super.key,
     required this.title,
     required this.value,
     required this.subTitle,
+    this.titleStyle,
   });
 
   @override
@@ -39,7 +41,7 @@ class MenuItemView extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: robotoCondensedBold.copyWith(fontSize: 16),
+                  style: titleStyle ?? robotoCondensedBold.copyWith(fontSize: 16),
                 ),
               ),
               const Icon(Icons.arrow_forward, size: 20, color: AppColors.black1),

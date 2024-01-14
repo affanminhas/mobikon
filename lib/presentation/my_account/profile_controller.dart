@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobikon/presentation/my_account/model/business_model.dart';
 import 'package:mobikon/presentation/my_account/model/profile_model.dart';
+import 'package:mobikon/presentation/welcome/welcome_view.dart';
 import 'package:mobikon/repository/profile_repo.dart';
+import 'package:mobikon/services/preferences.dart';
 import 'package:mobikon/widgets/custom_popup.dart';
 
 class ProfileController extends GetxController {
@@ -249,7 +251,6 @@ class ProfileController extends GetxController {
     }
   }
 
-
   /// Update User Business Profile Api Call
   Future<void> updateUserBusinessInfo(BuildContext context) async {
     try {
@@ -275,6 +276,13 @@ class ProfileController extends GetxController {
       log(e.toString());
     } finally {
       setLoading(false);
+    }
+  }
+
+  Future<void> logout() async {
+    bool logout = await Preference.clear();
+    if (logout) {
+      Get.offAllNamed(WelcomeView.id);
     }
   }
 }
