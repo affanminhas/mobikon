@@ -36,7 +36,7 @@ class CustomDeleteDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: const [
           BoxShadow(
-            color: Colors.black,
+            color: AppColors.greyColor,
             offset: Offset(0, 10),
             blurRadius: 10,
           ),

@@ -3,7 +3,7 @@ import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/typography.dart';
 
 class PrimaryButton extends StatelessWidget {
-  final String title;
+  final String? title;
   final Color bgColor;
   final Color textColor;
   final TextStyle? textStyle;
@@ -17,7 +17,7 @@ class PrimaryButton extends StatelessWidget {
 
   const PrimaryButton({
     super.key,
-    required this.title,
+    this.title,
     this.textStyle,
     this.bgColor = AppColors.primaryColor,
     this.textColor = AppColors.bgColor,
@@ -45,7 +45,7 @@ class PrimaryButton extends StatelessWidget {
       onPressed: onTap,
       child: child ??
           Text(
-            title,
+            title ?? '',
             style: textStyle ?? robotoCondensedBold.copyWith(color: textColor, fontSize: 16),
           ),
     );

@@ -31,4 +31,8 @@ class Endpoints {
 
   /// Product Endpoints
   static const String productAPI = "$baseUrl/api/stock/products/";
+
+  /// Stock Endpoints
+  static const String stockHistoryURL = "$baseUrl/api/stock/history/";
+  static const String shelvesURL = "$baseUrl/api/warehouse/shelves";
 }

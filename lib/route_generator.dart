@@ -11,13 +11,14 @@ import 'package:mobikon/presentation/home/views/container/slide_door_feed_view.d
 import 'package:mobikon/presentation/home/views/container/track_container_view.dart';
 import 'package:mobikon/presentation/login/views/login_view.dart';
 import 'package:mobikon/presentation/my_account/views/business_details_view.dart';
-import 'package:mobikon/presentation/my_account/views/notification_view.dart';
+import 'package:mobikon/presentation/my_account/views/notification_control_view.dart';
 import 'package:mobikon/presentation/my_account/views/personal_info_view.dart';
 import 'package:mobikon/presentation/my_account/views/qr_scan_view.dart';
 import 'package:mobikon/presentation/my_account/views/security_view.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/edit_staff_member.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/staff_member_detail_view.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/staff_members_view.dart';
+import 'package:mobikon/presentation/notification/views/notification_view.dart';
 import 'package:mobikon/presentation/products/views/add_new_product_view.dart';
 import 'package:mobikon/presentation/products/views/image_preview.dart';
 import 'package:mobikon/presentation/products/views/product_preview.dart';
@@ -89,8 +90,8 @@ class RouteGenerator {
         return PageTransition(child: const StaffMemberDetailView(), type: PageTransitionType.rightToLeft);
       case SecurityView.id:
         return PageTransition(child: const SecurityView(), type: PageTransitionType.rightToLeft);
-      case NotificationView.id:
-        return PageTransition(child: const NotificationView(), type: PageTransitionType.rightToLeft);
+      case NotificationControlView.id:
+        return PageTransition(child: const NotificationControlView(), type: PageTransitionType.rightToLeft);
       case RequestContainerView.id:
         return PageTransition(child: const RequestContainerView(), type: PageTransitionType.rightToLeft);
       case RequestSubmittedView.id:
@@ -113,6 +114,8 @@ class RouteGenerator {
         return PageTransition(child: const AddStockView(), type: PageTransitionType.rightToLeft);
       case StockEntryView.id:
         return PageTransition(child: const StockEntryView(), type: PageTransitionType.rightToLeft);
+      case NotificationView.id:
+        return PageTransition(child: const NotificationView(), type: PageTransitionType.rightToLeft);
       case ImagePreview.id:
         ImagePreviewArguments args = settings.arguments as ImagePreviewArguments;
         return PageTransition(child: ImagePreview(image: args.image), type: PageTransitionType.rightToLeft);

@@ -10,6 +10,9 @@ import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/presentation/my_account/views/my_account_view.dart';
 import 'package:mobikon/presentation/products/controller/product_controller.dart';
 import 'package:mobikon/presentation/products/views/products_view.dart';
+import 'package:mobikon/presentation/report/view/report_view.dart';
+import 'package:mobikon/presentation/stocks/controllers/stock_controller.dart';
+import 'package:mobikon/presentation/stocks/views/stock_history_view.dart';
 
 class DashboardView extends StatefulWidget {
   static const String id = '/dashboard-view';
@@ -22,34 +25,45 @@ class DashboardView extends StatefulWidget {
 
 class _DashboardViewState extends State<DashboardView> {
   int _selectedIndex = 0;
-  List<Widget> screens = [
-    const HomeView(),
-    const MyProductsView(),
-    const DriversView(),
-    const MyAccountView(),
-  ];
+  List<Widget> screens = [];
   List<String> titles = [
     'Home',
     'Products',
-    'My Staff',
+    'Reports',
+    'Stocks',
     'My Account',
   ];
 
   List<String> icons = [
     Strings.homeAsset,
     Strings.deliveriesAsset,
-    Strings.driversAsset,
+    Strings.reportAsset,
+    Strings.stockAsset,
     Strings.myAccountAsset,
   ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    screens = [
+      HomeView(onMenuTap: _onItemTapped),
+      const MyProductsView(),
+      const ReportView(),
+      const StockHistoryView(),
+      const MyAccountView(),
+    ];
     Get.find<ProfileController>().getUserProfileInfo();
     Get.find<ProfileController>().getUserBusinessInfo();
     Get.find<ProductController>().getAllProducts();
     Get.find<HomeController>().getContainerSize();
     Get.find<HomeController>().getAllContainers();
+    Get.find<StockController>().getAllStockHistory();
   }
 
   @override
@@ -80,7 +94,7 @@ class _DashboardViewState extends State<DashboardView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     ...List.generate(
-                      4,
+                      5,
                       (index) {
                         return GestureDetector(
                           onTap: () {
