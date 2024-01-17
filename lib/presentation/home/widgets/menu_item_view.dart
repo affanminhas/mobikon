@@ -44,7 +44,7 @@ class MenuItemView extends StatelessWidget {
                   style: titleStyle ?? robotoCondensedBold.copyWith(fontSize: 16),
                 ),
               ),
-              const Icon(Icons.arrow_forward, size: 20, color: AppColors.black1),
+              //const Icon(Icons.arrow_forward, size: 20, color: AppColors.black1),
             ],
           ),
           const SizedBox(height: 4),
