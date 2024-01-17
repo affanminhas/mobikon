@@ -178,8 +178,8 @@ class StockController extends GetxController {
       setLoading(true);
       bool isAdded = await _stockRepository.addStockEntries(_stockPostList);
       if (isAdded) {
-        _stockPostList.clear();
         await getAllStockHistory();
+        _stockPostList.clear();
         Get.back();
         //Get.snackbar('Success', 'Stock Entries Added Successfully');
         // Future.delayed(const Duration(seconds: 3), () {

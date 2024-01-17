@@ -43,6 +43,7 @@ class _StockHistoryViewState extends State<StockHistoryView> {
                     title: 'Stock History',
                     routeName: AddStockView.id,
                     actionText: 'Add Entries',
+                    isBackButtonRequired: false,
                   ),
                 ),
                 const SizedBox(height: 30),

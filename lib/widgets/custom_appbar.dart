@@ -26,22 +26,25 @@ class SecondaryAppBar extends StatelessWidget {
   final String title;
   final String routeName;
   final String actionText;
+  final bool isBackButtonRequired;
 
   const SecondaryAppBar({
     super.key,
     required this.title,
     required this.routeName,
     required this.actionText,
+    this.isBackButtonRequired = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(Icons.arrow_back_ios_new, size: 20),
-        ),
+        if (isBackButtonRequired)
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: const Icon(Icons.arrow_back_ios_new, size: 20),
+          ),
         const SizedBox(width: 10),
         Text(title, style: robotoCondensedBold.copyWith(fontSize: 18)),
         const Spacer(),
