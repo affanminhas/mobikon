@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:mobikon/presentation/products/model/product_model.dart';
 import 'package:mobikon/presentation/stocks/model/shelf_model.dart';
 import 'package:mobikon/presentation/stocks/model/shelf_product_model.dart';
 import 'package:mobikon/presentation/stocks/model/stock_history_model.dart';
@@ -16,6 +17,8 @@ class StockController extends GetxController {
   List<ShelfProduct> _shelfProduct = [];
   List<Shelf> _filteredShelves = [];
   List<ShelfProduct> _filteredShelfProducts = [];
+  List<StockHistoryRecord> _filteredRecords = [];
+  List<Product> _selectedFilterProducts = [];
   String _shelfSearchText = '';
   String _shelfProductSearchText = '';
   Shelf _selectedShelf = Shelf.idle();
@@ -56,8 +59,24 @@ class StockController extends GetxController {
 
   String get shelfProductQuantity => _shelfProductQuantity;
 
+  List<Product> get selectedFilterProducts => _selectedFilterProducts;
+
   bool get isFormValid =>
       _shelfController.text.isNotEmpty && _shelfProductController.text.isNotEmpty && shelfProductQuantity.isNotEmpty;
+
+  List<StockHistoryRecord> get filteredRecords => _filteredRecords;
+
+  void onSelectProductFilter(Product product) {
+    if (_selectedFilterProducts.contains(product)) {
+      _selectedFilterProducts.remove(product);
+    } else {
+      _selectedFilterProducts.add(product);
+    }
+    _filteredRecords = _stockHistory.records
+        .where((element) => _selectedFilterProducts.map((e) => e.id == element.product.id).contains(true))
+        .toList();
+    update();
+  }
 
   void onSearchShelf(String value) {
     _shelfSearchText = value;

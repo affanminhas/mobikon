@@ -7,6 +7,7 @@ import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/stocks/controllers/stock_controller.dart';
 import 'package:mobikon/presentation/stocks/model/stock_history_model.dart';
 import 'package:mobikon/presentation/stocks/views/add_stock_view.dart';
+import 'package:mobikon/presentation/stocks/widgets/filters/product_filter_sheet.dart';
 import 'package:mobikon/widgets/custom_appbar.dart';
 import 'package:mobikon/widgets/custom_empty_widget.dart';
 import 'package:mobikon/widgets/custom_image_builder.dart';
@@ -22,6 +23,9 @@ class StockHistoryView extends StatefulWidget {
 }
 
 class _StockHistoryViewState extends State<StockHistoryView> {
+  bool _isProductSelected = false;
+  bool _isShelfSelected = false;
+
   @override
   void initState() {
     super.initState();
@@ -46,7 +50,7 @@ class _StockHistoryViewState extends State<StockHistoryView> {
                     isBackButtonRequired: false,
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 15),
                 Expanded(
                   child: stockController.isLoading
                       ? const Center(child: PrimaryLoader())
@@ -61,99 +65,198 @@ class _StockHistoryViewState extends State<StockHistoryView> {
                                     title: 'No Stocks Found!',
                                   ),
                                 )
-                              : ListView.separated(
-                                  itemBuilder: (context, index) {
-                                    int reversedIndex = stockController.stockHistory.records.length - index - 1;
-                                    StockHistoryRecord record = stockController.stockHistory.records[reversedIndex];
-                                    return Container(
-                                      margin: const EdgeInsets.symmetric(horizontal: 16),
-                                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.white,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.2),
-                                            spreadRadius: 2,
-                                            blurRadius: 2,
-                                            offset: const Offset(0, 2),
-                                          ),
-                                        ],
-                                      ),
+                              : Column(
+                                  children: [
+                                    Divider(color: AppColors.greyColor.withOpacity(0.15)),
+                                    const SizedBox(height: 5),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 16),
                                       child: Row(
                                         children: [
-                                          ClipRRect(
-                                            borderRadius: BorderRadius.circular(8),
-                                            child: CustomCashedImage(
-                                              image: Endpoints.baseUrl + record.product.thumbnail,
-                                              shape: BoxShape.rectangle,
-                                              width: 75,
-                                              height: 75,
-                                              loaderHeight: 75,
-                                              loaderWidth: 75,
-                                            ),
-                                          ),
-                                          const SizedBox(width: 9),
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(record.product.name,
-                                                    style: robotoCondensedSemiBold.copyWith(fontSize: 18)),
-                                                const SizedBox(height: 4),
-                                                Text(record.shelf,
-                                                    style: robotoCondensedRegular.copyWith(fontSize: 16)),
-                                                const SizedBox(height: 4),
-                                                Row(
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        Image.asset(Strings.personAsset, width: 10, height: 10),
-                                                        const SizedBox(width: 5),
-                                                        Text(record.createdBy,
-                                                            style: robotoCondensedRegular.copyWith(fontSize: 12)),
-                                                      ],
-                                                    ),
-                                                    const SizedBox(width: 8),
-                                                    Row(
-                                                      children: [
-                                                        Image.asset(Strings.calendarAsset, width: 10, height: 10),
-                                                        const SizedBox(width: 5),
-                                                        Text(
-                                                          record.createdAt,
-                                                          style: robotoCondensedRegular.copyWith(fontSize: 12),
-                                                        ),
-                                                      ],
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Row(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              if (record.type == 'Addition')
-                                                const Icon(Icons.arrow_upward, size: 25, color: AppColors.greenColor),
-                                              if (record.type == 'Reduction')
-                                                const Icon(Icons.arrow_downward, size: 25, color: AppColors.redColor3),
-                                              Text(
-                                                record.quantity.toString(),
-                                                style: robotoCondensedRegular.copyWith(
-                                                  fontSize: 18,
-                                                  color: record.type == 'Addition'
-                                                      ? AppColors.greenColor
-                                                      : AppColors.redColor3,
-                                                ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                if (!_isProductSelected) {
+                                                  _isProductSelected = true;
+                                                }
+                                              });
+
+                                              showModalBottomSheet(
+                                                context: context,
+                                                builder: (context) {
+                                                  return const ProductFilterSheet();
+                                                },
+                                              );
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                                              decoration: BoxDecoration(
+                                                color: _isProductSelected ? AppColors.primaryColor : Colors.white,
+                                                borderRadius: BorderRadius.circular(50),
+                                                border: Border.all(color: AppColors.primaryColor),
                                               ),
-                                            ],
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    'Products',
+                                                    style: robotoCondensedRegular.copyWith(
+                                                      fontSize: 16,
+                                                      color: _isProductSelected ? Colors.white : Colors.black,
+                                                    ),
+                                                  ),
+                                                  if (_isProductSelected) ...[
+                                                    const SizedBox(width: 5),
+                                                    const SizedBox(
+                                                      width: 15,
+                                                      child: Icon(Icons.arrow_drop_down_outlined, color: Colors.white),
+                                                    ),
+                                                  ],
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 12),
+                                          GestureDetector(
+                                            onTap: () {
+                                              setState(() {
+                                                _isShelfSelected = true;
+                                              });
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                                              decoration: BoxDecoration(
+                                                color: _isShelfSelected ? AppColors.primaryColor : Colors.white,
+                                                borderRadius: BorderRadius.circular(50),
+                                                border: Border.all(color: AppColors.primaryColor),
+                                              ),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    'Shelves',
+                                                    style: robotoCondensedRegular.copyWith(
+                                                      fontSize: 16,
+                                                      color: _isShelfSelected ? Colors.white : Colors.black,
+                                                    ),
+                                                  ),
+                                                  if (_isShelfSelected) ...[
+                                                    const SizedBox(width: 5),
+                                                    const SizedBox(
+                                                      width: 15,
+                                                      child: Icon(Icons.arrow_drop_down_outlined, color: Colors.white),
+                                                    ),
+                                                  ],
+                                                ],
+                                              ),
+                                            ),
                                           )
                                         ],
                                       ),
-                                    );
-                                  },
-                                  separatorBuilder: (context, index) => const SizedBox(height: 16),
-                                  itemCount: stockController.stockHistory.records.length,
+                                    ),
+                                    const SizedBox(height: 16),
+                                    Expanded(
+                                      child: ListView.separated(
+                                        itemBuilder: (context, index) {
+                                          List<StockHistoryRecord> records = stockController.filteredRecords.isEmpty
+                                              ? stockController.stockHistory.records
+                                              : stockController.filteredRecords;
+                                          int reversedIndex = records.length - index - 1;
+                                          StockHistoryRecord record = records[reversedIndex];
+                                          return Container(
+                                            margin: const EdgeInsets.symmetric(horizontal: 16),
+                                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(10),
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey.withOpacity(0.2),
+                                                  spreadRadius: 2,
+                                                  blurRadius: 2,
+                                                  offset: const Offset(0, 2),
+                                                ),
+                                              ],
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius: BorderRadius.circular(8),
+                                                  child: CustomCashedImage(
+                                                    image: Endpoints.baseUrl + record.product.thumbnail,
+                                                    shape: BoxShape.rectangle,
+                                                    width: 75,
+                                                    height: 75,
+                                                    loaderHeight: 75,
+                                                    loaderWidth: 75,
+                                                  ),
+                                                ),
+                                                const SizedBox(width: 9),
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text(record.product.name,
+                                                          style: robotoCondensedSemiBold.copyWith(fontSize: 18)),
+                                                      const SizedBox(height: 4),
+                                                      Text(record.shelf,
+                                                          style: robotoCondensedRegular.copyWith(fontSize: 16)),
+                                                      const SizedBox(height: 4),
+                                                      Row(
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              Image.asset(Strings.personAsset, width: 10, height: 10),
+                                                              const SizedBox(width: 5),
+                                                              Text(record.createdBy,
+                                                                  style: robotoCondensedRegular.copyWith(fontSize: 12)),
+                                                            ],
+                                                          ),
+                                                          const SizedBox(width: 8),
+                                                          Row(
+                                                            children: [
+                                                              Image.asset(Strings.calendarAsset, width: 10, height: 10),
+                                                              const SizedBox(width: 5),
+                                                              Text(
+                                                                record.createdAt,
+                                                                style: robotoCondensedRegular.copyWith(fontSize: 12),
+                                                              ),
+                                                            ],
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    if (record.type == 'Addition')
+                                                      const Icon(Icons.arrow_upward,
+                                                          size: 25, color: AppColors.greenColor),
+                                                    if (record.type == 'Reduction')
+                                                      const Icon(Icons.arrow_downward,
+                                                          size: 25, color: AppColors.redColor3),
+                                                    Text(
+                                                      record.quantity.toString(),
+                                                      style: robotoCondensedRegular.copyWith(
+                                                        fontSize: 18,
+                                                        color: record.type == 'Addition'
+                                                            ? AppColors.greenColor
+                                                            : AppColors.redColor3,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                        separatorBuilder: (context, index) => const SizedBox(height: 16),
+                                        itemCount: stockController.filteredRecords.isEmpty
+                                            ? stockController.stockHistory.records.length
+                                            : stockController.filteredRecords.length,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                         ),
                 ),
