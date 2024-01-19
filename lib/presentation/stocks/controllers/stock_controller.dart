@@ -17,8 +17,10 @@ class StockController extends GetxController {
   List<ShelfProduct> _shelfProduct = [];
   List<Shelf> _filteredShelves = [];
   List<ShelfProduct> _filteredShelfProducts = [];
-  List<StockHistoryRecord> _filteredRecords = [];
+  // List<StockHistoryRecord> _filteredRecordsWithProduct = [];
+  // List<StockHistoryRecord> _filteredRecordsWithShelf = [];
   List<Product> _selectedFilterProducts = [];
+  List<Shelf> _selectedFilterShelf = [];
   String _shelfSearchText = '';
   String _shelfProductSearchText = '';
   Shelf _selectedShelf = Shelf.idle();
@@ -61,10 +63,14 @@ class StockController extends GetxController {
 
   List<Product> get selectedFilterProducts => _selectedFilterProducts;
 
+  List<Shelf> get selectedFilterShelf => _selectedFilterShelf;
+
   bool get isFormValid =>
       _shelfController.text.isNotEmpty && _shelfProductController.text.isNotEmpty && shelfProductQuantity.isNotEmpty;
 
-  List<StockHistoryRecord> get filteredRecords => _filteredRecords;
+  // List<StockHistoryRecord> get filteredRecordsWithProduct => _filteredRecordsWithProduct;
+  //
+  // List<StockHistoryRecord> get filteredRecordsWithShelf => _filteredRecordsWithShelf;
 
   void onSelectProductFilter(Product product) {
     if (_selectedFilterProducts.contains(product)) {
@@ -72,10 +78,41 @@ class StockController extends GetxController {
     } else {
       _selectedFilterProducts.add(product);
     }
-    _filteredRecords = _stockHistory.records
-        .where((element) => _selectedFilterProducts.map((e) => e.id == element.product.id).contains(true))
-        .toList();
+    // _filteredRecordsWithProduct = _stockHistory.records
+    //     .where((element) => _selectedFilterProducts.map((e) => e.id == element.product.id).contains(true))
+    //     .toList();
     update();
+  }
+
+  void onSelectShelfFilter(Shelf shelf) {
+    if (_selectedFilterShelf.contains(shelf)) {
+      _selectedFilterShelf.remove(shelf);
+    } else {
+      _selectedFilterShelf.add(shelf);
+    }
+    // _filteredRecordsWithShelf = _stockHistory.records
+    //     .where((element) => _selectedFilterShelf.map((e) => e.name == element.shelf).contains(true))
+    //     .toList();
+    update();
+  }
+
+  List<StockHistoryRecord> get filteredRecords {
+    if (_selectedFilterProducts.isNotEmpty && _selectedFilterShelf.isNotEmpty) {
+      return _stockHistory.records
+          .where((element) => _selectedFilterProducts.map((e) => e.id == element.product.id).contains(true))
+          .where((element) => _selectedFilterShelf.map((e) => e.name == element.shelf).contains(true))
+          .toList();
+    } else if (_selectedFilterProducts.isNotEmpty) {
+      return _stockHistory.records
+          .where((element) => _selectedFilterProducts.map((e) => e.id == element.product.id).contains(true))
+          .toList();
+    } else if (_selectedFilterShelf.isNotEmpty) {
+      return _stockHistory.records
+          .where((element) => _selectedFilterShelf.map((e) => e.name == element.shelf).contains(true))
+          .toList();
+    } else {
+      return _stockHistory.records;
+    }
   }
 
   void onSearchShelf(String value) {

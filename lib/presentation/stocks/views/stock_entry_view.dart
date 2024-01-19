@@ -20,7 +20,7 @@ class StockEntryView extends StatefulWidget {
 }
 
 class _StockEntryViewState extends State<StockEntryView> {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -148,10 +148,8 @@ class _StockEntryViewState extends State<StockEntryView> {
                         child: PrimaryButton(
                           bgColor: Colors.white,
                           onTap: () {
-                            if(_formKey.currentState!.validate()) {
-                              setState(() {
-
-                              });
+                            if (_formKey.currentState!.validate()) {
+                              setState(() {});
                               stockController.onSaveStock(true);
                             }
                           },
