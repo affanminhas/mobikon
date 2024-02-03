@@ -5,6 +5,7 @@ import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/my_account/model/profile_model.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/presentation/my_account/widgets/edit_personal_info_sheet.dart';
+import 'package:mobikon/widgets/custom_appbar.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 
 class PersonalInfoView extends StatelessWidget {
@@ -22,22 +23,13 @@ class PersonalInfoView extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 24),
+                const PrimaryAppBar(title: 'Personal info'),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 36),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: const Icon(Icons.arrow_back_ios_new_outlined, size: 18),
-                          ),
-                          const SizedBox(width: 8),
-                          Text('Personal info', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                        ],
-                      ),
                       const SizedBox(height: 44),
                       Text('First Name', style: robotoCondensedMedium.copyWith(fontSize: 16)),
                       const SizedBox(height: 8),

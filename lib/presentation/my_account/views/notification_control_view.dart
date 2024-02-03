@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/typography.dart';
+import 'package:mobikon/widgets/custom_appbar.dart';
 
 class NotificationControlView extends StatelessWidget {
   static const String id = '/notificationView';
@@ -11,24 +12,15 @@ class NotificationControlView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: const Icon(Icons.arrow_back_ios_new_outlined, size: 18),
-                  ),
-                  const SizedBox(width: 8),
-                  Text('Notifications', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                ],
-              ),
-              const SizedBox(height: 30),
-              Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 24),
+            const PrimaryAppBar(title: 'Notifications'),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
@@ -55,8 +47,8 @@ class NotificationControlView extends StatelessWidget {
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

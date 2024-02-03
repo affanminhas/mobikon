@@ -42,16 +42,13 @@ class _StockHistoryViewState extends State<StockHistoryView> {
             return Column(
               children: [
                 const SizedBox(height: 22),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: SecondaryAppBar(
-                    title: 'Stock History',
-                    routeName: AddStockView.id,
-                    actionText: 'Add Entries',
-                    isBackButtonRequired: false,
-                  ),
+                const SecondaryAppBar(
+                  title: 'Stock History',
+                  routeName: AddStockView.id,
+                  actionText: 'Add Entries',
+                  isBackButtonRequired: false,
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 25),
                 Expanded(
                   child: stockController.isLoading
                       ? const Center(child: PrimaryLoader())
@@ -68,12 +65,12 @@ class _StockHistoryViewState extends State<StockHistoryView> {
                                 )
                               : Column(
                                   children: [
-                                    Divider(color: AppColors.greyColor.withOpacity(0.15)),
-                                    const SizedBox(height: 5),
                                     Padding(
                                       padding: const EdgeInsets.symmetric(horizontal: 16),
                                       child: Row(
                                         children: [
+                                          Image.asset(Strings.filterIcon, height: 28, width: 28, color: Colors.grey),
+                                          const SizedBox(width: 15),
                                           GestureDetector(
                                             onTap: () {
                                               setState(() {
@@ -147,7 +144,9 @@ class _StockHistoryViewState extends State<StockHistoryView> {
                                             child: Container(
                                               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                                               decoration: BoxDecoration(
-                                                color: stockController.selectedFilterShelf.isNotEmpty ? AppColors.primaryColor : Colors.white,
+                                                color: stockController.selectedFilterShelf.isNotEmpty
+                                                    ? AppColors.primaryColor
+                                                    : Colors.white,
                                                 borderRadius: BorderRadius.circular(50),
                                                 border: Border.all(color: AppColors.primaryColor),
                                               ),
@@ -157,7 +156,9 @@ class _StockHistoryViewState extends State<StockHistoryView> {
                                                     'Shelves',
                                                     style: robotoCondensedRegular.copyWith(
                                                       fontSize: 16,
-                                                      color: stockController.selectedFilterShelf.isNotEmpty ? Colors.white : Colors.black,
+                                                      color: stockController.selectedFilterShelf.isNotEmpty
+                                                          ? Colors.white
+                                                          : Colors.black,
                                                     ),
                                                   ),
                                                   if (stockController.selectedFilterShelf.isNotEmpty) ...[
@@ -170,7 +171,20 @@ class _StockHistoryViewState extends State<StockHistoryView> {
                                                 ],
                                               ),
                                             ),
-                                          )
+                                          ),
+                                          const Spacer(),
+                                          if (stockController.selectedFilterProducts.isNotEmpty ||
+                                              stockController.selectedFilterShelf.isNotEmpty)
+                                            InkWell(
+                                              onTap: (){
+                                                stockController.resetFilter();
+                                              },
+                                              child: Image.asset(
+                                                Strings.resetIcon,
+                                                height: 28,
+                                                width: 28,
+                                              ),
+                                            ),
                                         ],
                                       ),
                                     ),

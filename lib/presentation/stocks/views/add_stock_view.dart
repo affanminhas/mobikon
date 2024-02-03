@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobikon/constants/app_colors.dart';
-import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/stocks/controllers/stock_controller.dart';
 import 'package:mobikon/presentation/stocks/model/stock_post_model.dart';
@@ -10,7 +9,6 @@ import 'package:mobikon/presentation/stocks/widgets/delete_entry_dialog.dart';
 import 'package:mobikon/presentation/stocks/widgets/empty_stock_entry.dart';
 import 'package:mobikon/widgets/custom_appbar.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
-import 'package:mobikon/widgets/custom_empty_widget.dart';
 import 'package:mobikon/widgets/custom_loader.dart';
 
 class AddStockView extends StatelessWidget {
@@ -58,13 +56,10 @@ class AddStockView extends StatelessWidget {
             return Column(
               children: [
                 const SizedBox(height: 22),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: SecondaryAppBar(
-                    title: 'New Stock Entries',
-                    routeName: StockEntryView.id,
-                    actionText: 'Add Stock Entry',
-                  ),
+                const SecondaryAppBar(
+                  title: 'New Stock Entries',
+                  routeName: StockEntryView.id,
+                  actionText: 'Add Entry',
                 ),
                 const SizedBox(height: 30),
                 Expanded(

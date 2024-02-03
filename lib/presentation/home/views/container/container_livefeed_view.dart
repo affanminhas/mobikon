@@ -12,51 +12,49 @@ class ContainerLiveFeedView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-          child: Column(
-            children: [
-              const PrimaryAppBar(title: 'Container #01 Live Feed'),
-              const SizedBox(height: 24),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, SlideDoorFeedView.id);
-                },
-                child: Image.asset(
-                  Strings.cameraView,
-                  fit: BoxFit.fitWidth,
-                  width: double.infinity,
-                  height: 200,
-                ),
+        child: Column(
+          children: [
+            const SizedBox(height: 24),
+            const PrimaryAppBar(title: 'Container #01 Live Feed'),
+            const SizedBox(height: 24),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, SlideDoorFeedView.id);
+              },
+              child: Image.asset(
+                Strings.cameraView,
+                fit: BoxFit.fitWidth,
+                width: double.infinity,
+                height: 200,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, SlideDoorFeedView.id),
-                      child: Image.asset(
-                        Strings.cameraView,
-                        fit: BoxFit.fitWidth,
-                        width: double.infinity,
-                        height: 100,
-                      ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, SlideDoorFeedView.id),
+                    child: Image.asset(
+                      Strings.cameraView,
+                      fit: BoxFit.fitWidth,
+                      width: double.infinity,
+                      height: 100,
                     ),
                   ),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, SlideDoorFeedView.id),
-                      child: Image.asset(
-                        Strings.cameraView,
-                        fit: BoxFit.fitWidth,
-                        width: double.infinity,
-                        height: 100,
-                      ),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, SlideDoorFeedView.id),
+                    child: Image.asset(
+                      Strings.cameraView,
+                      fit: BoxFit.fitWidth,
+                      width: double.infinity,
+                      height: 100,
                     ),
                   ),
-                ],
-              )
-            ],
-          ),
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );

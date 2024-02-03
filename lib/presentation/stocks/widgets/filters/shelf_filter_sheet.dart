@@ -27,6 +27,7 @@ class ShelfFilterSheet extends StatelessWidget {
           return Stack(
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
                   Center(
@@ -39,10 +40,13 @@ class ShelfFilterSheet extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'Apply Filters',
-                    style: robotoCondensedBold.copyWith(fontSize: 18),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    child: Text(
+                      'Apply Filters',
+                      style: robotoCondensedBold.copyWith(fontSize: 18),
+                    ),
                   ),
                   const SizedBox(height: 20),
                   Padding(
@@ -77,12 +81,13 @@ class ShelfFilterSheet extends StatelessWidget {
                                     children: [
                                       const SizedBox(width: 10),
                                       ClipRRect(
-                                          borderRadius: BorderRadius.circular(8),
-                                          child: SizedBox(
-                                            height: 50,
-                                            width: 50,
-                                            child: Image.asset(Strings.containerAsset),
-                                          )),
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: SizedBox(
+                                          height: 50,
+                                          width: 50,
+                                          child: Image.asset(Strings.containerAsset),
+                                        ),
+                                      ),
                                       const SizedBox(width: 15),
                                       Text(
                                         shelf.name,

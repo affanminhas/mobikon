@@ -84,6 +84,14 @@ class StockController extends GetxController {
     update();
   }
 
+  void resetFilter(){
+    _selectedFilterProducts.clear();
+    _selectedFilterShelf.clear();
+    _shelfSearchText = '';
+    _shelfProductSearchText = '';
+    update();
+  }
+
   void onSelectShelfFilter(Shelf shelf) {
     if (_selectedFilterShelf.contains(shelf)) {
       _selectedFilterShelf.remove(shelf);

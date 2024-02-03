@@ -4,6 +4,7 @@ import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/home/views/container/container_livefeed_view.dart';
 import 'package:mobikon/presentation/home/views/container/request_container_view.dart';
+import 'package:mobikon/utilities/map_utility.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 
 class ContainerDetailView extends StatelessWidget {
@@ -196,7 +197,7 @@ class ContainerDetailView extends StatelessWidget {
                     child: PrimaryButton(
                       bgColor: AppColors.blueColor,
                       onTap: () {
-                        //Navigator.pushNamed(context, RequestSubmittedView.id);
+                        MapUtils.openMap(-3.823216,-38.481700);
                       },
                       title: 'Track Container',
                     ),

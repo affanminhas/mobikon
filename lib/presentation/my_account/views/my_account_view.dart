@@ -15,6 +15,7 @@ import 'package:mobikon/presentation/my_account/views/security_view.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/staff_members_view.dart';
 import 'package:mobikon/presentation/my_account/widgets/account_item.dart';
 import 'package:mobikon/presentation/products/widget/logout_dialog.dart';
+import 'package:mobikon/widgets/custom_appbar.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 import 'package:mobikon/widgets/custom_image_builder.dart';
 
@@ -34,17 +35,8 @@ class _MyAccountViewState extends State<MyAccountView> {
           UserProfile profile = profileController.profile;
           return Column(
             children: [
-              const SizedBox(height: 36),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: [
-                    const Icon(Icons.arrow_back_ios_new_outlined, size: 18),
-                    const SizedBox(width: 8),
-                    Text('My Account', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                  ],
-                ),
-              ),
+              const SizedBox(height: 24),
+              const PrimaryAppBar(title: 'My Account'),
               const SizedBox(height: 16),
               Container(
                 width: double.infinity,

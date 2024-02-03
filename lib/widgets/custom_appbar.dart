@@ -9,14 +9,23 @@ class PrimaryAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Icon(Icons.arrow_back_ios_new, size: 18),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: const Icon(Icons.arrow_back_ios_new, size: 18),
+              ),
+              const SizedBox(width: 16),
+              Text(title, style: robotoCondensedBold.copyWith(fontSize: 18)),
+            ],
+          ),
         ),
-        const SizedBox(width: 16),
-        Text(title, style: robotoCondensedBold.copyWith(fontSize: 18)),
+        const SizedBox(height: 20),
+        Divider(color: AppColors.greyColor.withOpacity(0.15), thickness: 1, height: 0),
       ],
     );
   }
@@ -38,29 +47,38 @@ class SecondaryAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        if (isBackButtonRequired)
-          GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: const Icon(Icons.arrow_back_ios_new, size: 20),
-          ),
-        const SizedBox(width: 10),
-        Text(title, style: robotoCondensedBold.copyWith(fontSize: 18)),
-        const Spacer(),
-        GestureDetector(
-          onTap: () => Navigator.pushNamed(context, routeName),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
-              const Icon(Icons.add, color: AppColors.blueColor),
-              const SizedBox(width: 4),
-              Text(
-                actionText,
-                style: robotoCondensedBold.copyWith(fontSize: 14, color: AppColors.blueColor),
-              ),
+              if (isBackButtonRequired)
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: const Icon(Icons.arrow_back_ios_new, size: 20),
+                ),
+              const SizedBox(width: 10),
+              Text(title, style: robotoCondensedBold.copyWith(fontSize: 18)),
+              const Spacer(),
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, routeName),
+                child: Row(
+                  children: [
+                    const Icon(Icons.add, color: AppColors.blueColor),
+                    const SizedBox(width: 4),
+                    Text(
+                      actionText,
+                      style: robotoCondensedBold.copyWith(fontSize: 14, color: AppColors.blueColor),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
-        )
+        ),
+        const SizedBox(height: 20),
+        Divider(color: AppColors.greyColor.withOpacity(0.15), thickness: 1, height: 0),
       ],
     );
   }

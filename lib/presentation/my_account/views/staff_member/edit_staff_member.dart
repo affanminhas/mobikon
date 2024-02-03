@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/utilities/validators.dart';
+import 'package:mobikon/widgets/custom_appbar.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 import 'package:mobikon/widgets/custom_dropdown.dart';
 import 'package:mobikon/widgets/custom_text_field.dart';
@@ -20,37 +21,11 @@ class EditStaffMember extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 24),
+            const PrimaryAppBar(title: 'Add Staff Member'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: const Icon(Icons.arrow_back_ios_new, size: 18),
-                          ),
-                          const SizedBox(width: 16),
-                          Text('Staff Members ', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                        ],
-                      ),
-                      const SizedBox(height: 24),
-                      Text('Product Details', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Fill the details below to add product',
-                        style: robotoCondensedRegular.copyWith(fontSize: 14, color: AppColors.darkGrey),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 14),
-                const Divider(),
-                const SizedBox(height: 14),
+                const SizedBox(height: 34),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(

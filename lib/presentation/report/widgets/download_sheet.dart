@@ -61,67 +61,61 @@ class _PDFDownloadSheetState extends State<PDFDownloadSheet> {
             widget.title,
             style: robotoCondensedBold.copyWith(fontSize: 18, color: Colors.black),
           ),
-          const SizedBox(height: 20),
-          Row(
+          const SizedBox(height: 35),
+          Column(
             children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text('Start Date', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: () => _selectDate(context, true),
-                          child: const Icon(
-                            Icons.calendar_today_outlined,
-                            size: 18,
-                            color: AppColors.blueColor,
-                          ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text('Start Date', style: robotoCondensedMedium.copyWith(fontSize: 17)),
+                      const Spacer(),
+                      Text(
+                        DateFormat.yMMMMEEEEd().format(selectedStartDate),
+                        style: robotoCondensedRegular.copyWith(
+                          fontSize: 14,
+                          color: AppColors.darkGrey,
                         ),
-                        const SizedBox(width: 20),
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      DateFormat.yMMMMEEEEd().format(selectedStartDate),
-                      style: robotoCondensedRegular.copyWith(
-                        fontSize: 14,
-                        color: AppColors.darkGrey,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 20),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text('End Date', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                        const Spacer(),
-                        GestureDetector(
-                          onTap: () => _selectDate(context, false),
-                          child: const Icon(
-                            Icons.calendar_today_outlined,
-                            size: 18,
-                            color: AppColors.blueColor,
-                          ),
+                      const SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () => _selectDate(context, true),
+                        child: const Icon(
+                          Icons.calendar_today_outlined,
+                          size: 20,
+                          color: AppColors.blueColor,
                         ),
-                        const SizedBox(width: 20),
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      DateFormat.yMMMMEEEEd().format(selectedEndDate),
-                      style: robotoCondensedRegular.copyWith(fontSize: 14, color: AppColors.darkGrey),
-                    ),
-                  ],
-                ),
-              )
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text('End Date', style: robotoCondensedMedium.copyWith(fontSize: 17)),
+                      const Spacer(),
+                      Text(
+                        DateFormat.yMMMMEEEEd().format(selectedEndDate),
+                        style: robotoCondensedRegular.copyWith(fontSize: 14, color: AppColors.darkGrey),
+                      ),
+                      const SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () => _selectDate(context, false),
+                        child: const Icon(
+                          Icons.calendar_today_outlined,
+                          size: 20,
+                          color: AppColors.blueColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
           const Spacer(),
@@ -134,7 +128,7 @@ class _PDFDownloadSheetState extends State<PDFDownloadSheet> {
                 const Icon(Icons.download, color: Colors.white),
                 const SizedBox(width: 4),
                 Text(
-                  'Download PDF',
+                  'Generate PDF',
                   style: robotoCondensedBold.copyWith(fontSize: 16, color: Colors.white),
                 ),
               ],

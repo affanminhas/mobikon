@@ -32,6 +32,7 @@ class _ProductFilterSheetState extends State<ProductFilterSheet> {
           return Stack(
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
                   Center(
@@ -44,10 +45,13 @@ class _ProductFilterSheetState extends State<ProductFilterSheet> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'Apply Filters',
-                    style: robotoCondensedBold.copyWith(fontSize: 18),
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18),
+                    child: Text(
+                      'Apply Filters',
+                      style: robotoCondensedBold.copyWith(fontSize: 18),
+                    ),
                   ),
                   const SizedBox(height: 20),
                   Padding(

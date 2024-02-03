@@ -20,13 +20,14 @@ class QRScanView extends StatelessWidget {
         child: GetBuilder<ProfileController>(
           builder: (profileController) {
             UserProfile profile = profileController.profile;
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-              child: Column(
-                children: [
-                  const PrimaryAppBar(title: 'Short link QR'),
-                  const SizedBox(height: 150),
-                  Stack(
+            return Column(
+              children: [
+                const SizedBox(height: 24),
+                const PrimaryAppBar(title: 'Short link QR'),
+                const SizedBox(height: 150),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Stack(
                     alignment: Alignment.topCenter,
                     children: [
                       Padding(
@@ -63,9 +64,9 @@ class QRScanView extends StatelessWidget {
                         child: CustomCashedImage(image: Endpoints.baseUrl + profile.profilePicture),
                       ),
                     ],
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             );
           },
         ),

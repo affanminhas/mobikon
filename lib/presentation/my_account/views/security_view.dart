@@ -5,6 +5,7 @@ import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/utilities/validators.dart';
+import 'package:mobikon/widgets/custom_appbar.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 import 'package:mobikon/widgets/custom_text_field.dart';
 
@@ -35,23 +36,12 @@ class _SecurityViewState extends State<SecurityView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 16, top: 24, bottom: 24),
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () => Navigator.pop(context),
-                        child: const Icon(Icons.arrow_back_ios_new_outlined, size: 18),
-                      ),
-                      const SizedBox(width: 8),
-                      Text('Security', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                    ],
-                  ),
-                ),
+                const SizedBox(height: 24),
+                const PrimaryAppBar(title: 'Security'),
                 if (_isChangePassword)
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 25),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

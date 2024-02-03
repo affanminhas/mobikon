@@ -99,62 +99,67 @@ class ProductPreview extends StatelessWidget {
             Product product = productController.selectedProduct;
             return productController.isLoading
                 ? const Center(child: PrimaryLoader())
-                : Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        PrimaryAppBar(title: product.name),
-                        const SizedBox(height: 16),
-                        Center(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: CustomCashedImage(
-                              image: product.thumbnail,
-                              shape: BoxShape.rectangle,
-                              width: 140,
-                              height: 140,
+                : Column(
+                  children: [
+                    const SizedBox(height: 24),
+                    PrimaryAppBar(title: product.name),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 20),
+                          Center(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child: CustomCashedImage(
+                                image: product.thumbnail,
+                                shape: BoxShape.rectangle,
+                                width: 140,
+                                height: 140,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 40),
-                        Text('Product Name', style: robotoCondensedMedium.copyWith(fontSize: 16)),
-                        const SizedBox(height: 8),
-                        Text(
-                          product.name,
-                          style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
-                        ),
-                        const SizedBox(height: 16),
-                        Text('Product Description', style: robotoCondensedMedium.copyWith(fontSize: 16)),
-                        const SizedBox(height: 8),
-                        Text(
-                          product.description,
-                          style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
-                        ),
-                        const SizedBox(height: 16),
-                        Text('Product Type', style: robotoCondensedMedium.copyWith(fontSize: 16)),
-                        const SizedBox(height: 8),
-                        Text(
-                          product.type,
-                          style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
-                        ),
-                        const SizedBox(height: 16),
-                        Text('Product Quantity', style: robotoCondensedMedium.copyWith(fontSize: 16)),
-                        const SizedBox(height: 8),
-                        Text(
-                          product.quantity.toString(),
-                          style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
-                        ),
-                        const SizedBox(height: 16),
-                        Text('Product ID', style: robotoCondensedMedium.copyWith(fontSize: 16)),
-                        const SizedBox(height: 8),
-                        Text(
-                          product.productId.toString(),
-                          style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
-                        ),
-                      ],
+                          const SizedBox(height: 40),
+                          Text('Product Name', style: robotoCondensedMedium.copyWith(fontSize: 16)),
+                          const SizedBox(height: 8),
+                          Text(
+                            product.name,
+                            style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
+                          ),
+                          const SizedBox(height: 16),
+                          Text('Product Description', style: robotoCondensedMedium.copyWith(fontSize: 16)),
+                          const SizedBox(height: 8),
+                          Text(
+                            product.description,
+                            style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
+                          ),
+                          const SizedBox(height: 16),
+                          Text('Product Type', style: robotoCondensedMedium.copyWith(fontSize: 16)),
+                          const SizedBox(height: 8),
+                          Text(
+                            product.type,
+                            style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
+                          ),
+                          const SizedBox(height: 16),
+                          Text('Product Quantity', style: robotoCondensedMedium.copyWith(fontSize: 16)),
+                          const SizedBox(height: 8),
+                          Text(
+                            product.quantity.toString(),
+                            style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
+                          ),
+                          const SizedBox(height: 16),
+                          Text('Product ID', style: robotoCondensedMedium.copyWith(fontSize: 16)),
+                          const SizedBox(height: 8),
+                          Text(
+                            product.productId.toString(),
+                            style: robotoCondensedRegular.copyWith(fontSize: 16, color: AppColors.darkGrey),
+                          ),
+                        ],
+                      ),
                     ),
-                  );
+                  ],
+                );
           },
         ),
       ),

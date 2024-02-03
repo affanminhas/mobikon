@@ -5,6 +5,7 @@ import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/my_account/model/business_model.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
 import 'package:mobikon/presentation/my_account/widgets/edit_business_info_sheet.dart';
+import 'package:mobikon/widgets/custom_appbar.dart';
 import 'package:mobikon/widgets/custom_buttons.dart';
 
 class BusinessDetailsView extends StatelessWidget {
@@ -22,22 +23,13 @@ class BusinessDetailsView extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 24),
+                const PrimaryAppBar(title: 'Business Details'),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 36),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () => Navigator.pop(context),
-                            child: const Icon(Icons.arrow_back_ios_new_outlined, size: 18),
-                          ),
-                          const SizedBox(width: 8),
-                          Text('Business Details', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                        ],
-                      ),
                       const SizedBox(height: 44),
                       Text('Name', style: robotoCondensedMedium.copyWith(fontSize: 16)),
                       const SizedBox(height: 8),

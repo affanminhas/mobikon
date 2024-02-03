@@ -3,6 +3,7 @@ import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/typography.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/edit_staff_member.dart';
 import 'package:mobikon/presentation/my_account/views/staff_member/staff_member_detail_view.dart';
+import 'package:mobikon/widgets/custom_appbar.dart';
 
 class StaffMembersView extends StatelessWidget {
   static const String id = '/staff-members-view';
@@ -13,39 +14,18 @@ class StaffMembersView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              const SizedBox(height: 24),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () => Navigator.pop(context),
-                    child: const Icon(Icons.arrow_back_ios_new, size: 18),
-                  ),
-                  const SizedBox(width: 16),
-                  Text('Staff Members ', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, EditStaffMember.id);
-                    },
-                    child: Row(
-                      children: [
-                        const Icon(Icons.add, color: AppColors.blueColor),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Add New Staff',
-                          style: robotoCondensedBold.copyWith(fontSize: 14, color: AppColors.blueColor),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 30),
-              Expanded(
+        child: Column(
+          children: [
+            const SizedBox(height: 24),
+            const SecondaryAppBar(
+              title: 'Staff Members',
+              routeName: EditStaffMember.id,
+              actionText: 'Add New Staff',
+            ),
+            const SizedBox(height: 30),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: ListView.separated(
                   itemCount: 10,
                   itemBuilder: (context, index) {
@@ -56,7 +36,7 @@ class StaffMembersView extends StatelessWidget {
                       child: Row(
                         children: [
                           CircleAvatar(
-                            radius: 40,
+                            radius: 30,
                             backgroundColor: Colors.grey.withOpacity(0.2),
                             child: const Icon(Icons.person, size: 30),
                           ),
@@ -87,8 +67,8 @@ class StaffMembersView extends StatelessWidget {
                   separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 16),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

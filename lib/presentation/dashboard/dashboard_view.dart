@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:mobikon/constants/app_colors.dart';
 import 'package:mobikon/constants/strings.dart';
 import 'package:mobikon/constants/typography.dart';
-import 'package:mobikon/presentation/drivers/drivers_view.dart';
 import 'package:mobikon/presentation/home/home_controller.dart';
 import 'package:mobikon/presentation/home/views/home_view.dart';
 import 'package:mobikon/presentation/my_account/profile_controller.dart';
@@ -70,6 +69,7 @@ class _DashboardViewState extends State<DashboardView> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.white,
       body: PopScope(
         canPop: false,
         child: Stack(

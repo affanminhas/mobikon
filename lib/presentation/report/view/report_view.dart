@@ -14,112 +14,125 @@ class ReportView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            const SizedBox(height: 24),
-            Row(
-              children: [
-                Text('Reports', style: robotoCondensedBold.copyWith(fontSize: 18)),
-                const Spacer(),
-                const Icon(Icons.more_vert, color: AppColors.blueColor),
-              ],
-            ),
-            const SizedBox(height: 30),
-            Row(
-              children: [
-                Expanded(
-                  child: GetBuilder<HomeController>(builder: (homeController) {
-                    return GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return const PDFDownloadSheet(title: 'Containers Report');
-                          },
-                        );
-                      },
-                      child: MenuItemView(
-                        title: 'Containers',
-                        value: homeController.allContainer.length.toString(),
-                        subTitle: '2 Containers Requested',
-                        titleStyle: robotoCondensedRegular.copyWith(fontSize: 14),
-                      ),
-                    );
-                  }),
+      child: Column(
+        children: [
+          const SizedBox(height: 24),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    Text('Reports', style: robotoCondensedBold.copyWith(fontSize: 18)),
+                    const Spacer(),
+                    const Icon(Icons.more_vert, color: AppColors.blueColor),
+                  ],
                 ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: GetBuilder<ProductController>(builder: (productController) {
-                    return GestureDetector(
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return const PDFDownloadSheet(title: 'Products Report');
-                          },
-                        );
-                      },
-                      child: MenuItemView(
-                        title: 'Products',
-                        value: productController.productList.length.toString(),
-                        subTitle: '24 Products Added',
-                        titleStyle: robotoCondensedRegular.copyWith(fontSize: 14),
-                      ),
-                    );
-                  }),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              const SizedBox(height: 20),
+              Divider(color: AppColors.greyColor.withOpacity(0.15), thickness: 1, height: 0),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
               children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (context) {
-                          return const PDFDownloadSheet(title: 'Staff Members Report');
-                        },
-                      );
-                    },
-                    child: MenuItemView(
-                      title: 'Staff Members',
-                      value: '5',
-                      subTitle: '26 Added',
-                      titleStyle: robotoCondensedRegular.copyWith(fontSize: 14),
+                const SizedBox(height: 30),
+                Row(
+                  children: [
+                    Expanded(
+                      child: GetBuilder<HomeController>(builder: (homeController) {
+                        return GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return const PDFDownloadSheet(title: 'Containers Report');
+                              },
+                            );
+                          },
+                          child: MenuItemView(
+                            title: 'Containers',
+                            value: homeController.allContainer.length.toString(),
+                            subTitle: '2 Containers Requested',
+                            titleStyle: robotoCondensedRegular.copyWith(fontSize: 14),
+                          ),
+                        );
+                      }),
                     ),
-                  ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: GetBuilder<ProductController>(builder: (productController) {
+                        return GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return const PDFDownloadSheet(title: 'Products Report');
+                              },
+                            );
+                          },
+                          child: MenuItemView(
+                            title: 'Products',
+                            value: productController.productList.length.toString(),
+                            subTitle: '24 Products Added',
+                            titleStyle: robotoCondensedRegular.copyWith(fontSize: 14),
+                          ),
+                        );
+                      }),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (context) {
-                          return const PDFDownloadSheet(title: 'Stocks Report');
+                const SizedBox(height: 24),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return const PDFDownloadSheet(title: 'Staff Members Report');
+                            },
+                          );
                         },
-                      );
-                    },
-                    child: GetBuilder<StockController>(builder: (stockController) {
-                      return MenuItemView(
-                        title: 'Stocks',
-                        value: stockController.stockHistory.records.length.toString(),
-                        subTitle: '26 Added',
-                        titleStyle: robotoCondensedRegular.copyWith(fontSize: 14),
-                      );
-                    }),
-                  ),
+                        child: MenuItemView(
+                          title: 'Staff Members',
+                          value: '5',
+                          subTitle: '26 Added',
+                          titleStyle: robotoCondensedRegular.copyWith(fontSize: 14),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return const PDFDownloadSheet(title: 'Stocks Report');
+                            },
+                          );
+                        },
+                        child: GetBuilder<StockController>(builder: (stockController) {
+                          return MenuItemView(
+                            title: 'Stocks',
+                            value: stockController.stockHistory.records.length.toString(),
+                            subTitle: '26 Added',
+                            titleStyle: robotoCondensedRegular.copyWith(fontSize: 14),
+                          );
+                        }),
+                      ),
+                    ),
+                  ],
                 ),
+                const SizedBox(height: 24),
               ],
             ),
-            const SizedBox(height: 24),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
